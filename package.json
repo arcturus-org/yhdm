@@ -1,0 +1,16 @@
+{
+  "name": "yhdm",
+  "productName": "樱花动漫",
+  "author": "ARCTURUS <1638330246@qq>",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "^3.1.2"
+  }
+}
