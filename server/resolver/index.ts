@@ -1,0 +1,1 @@
+export { homeResolver } from './home';
