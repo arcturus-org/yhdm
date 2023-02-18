@@ -1,12 +1,9 @@
 <template>
   <v-layout full-height>
-    <navbar />
     <v-main>
       <slot />
     </v-main>
   </v-layout>
 </template>
 
-<script setup lang="ts">
-import navbar from '@components/nx-navbar.vue';
-</script>
+<script setup lang="ts"></script>
