@@ -11,10 +11,12 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
     '@stores': resolve(__dirname, './stores'),
     '@utils': resolve(__dirname, './utils'),
+    '@components': resolve(__dirname, './components'),
   },
   runtimeConfig: {
     public: {
-      api: 'http://www.dm88.me', // 动漫花园官网
+      name: '樱花动漫',
+      api: 'http://www.dm88.me',
     },
   },
   modules: ['@pinia/nuxt', '@vueuse/nuxt'],
@@ -35,8 +37,14 @@ export default defineNuxtConfig({
         },
         {
           name: 'description',
-          content:
-            '樱花动漫拥有上万集高清晰画质的在线动漫, 观看完全免费、无须注册、高速播放、更新及时的专业在线樱花动漫站, 我们致力为所有动漫迷们提供最好看的动漫',
+          content: '上万集高清晰画质的在线动漫, 观看免费、无须注册、高速播放、更新及时',
+        },
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
         },
       ],
     },
