@@ -16,3 +16,9 @@ export const levelColor = (level: number) => {
       return '#03dac6';
   }
 };
+
+export const log = (msg: any, ...optionalParams: any[]) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(msg, ...optionalParams);
+  }
+};

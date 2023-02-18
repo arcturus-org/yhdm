@@ -1,5 +1,5 @@
 <template>
-  <v-card :elevation="0" hover :href="`${content.id}`">
+  <v-card :elevation="0" hover :href="`info/${content.id}`">
     <v-img
       :src="content.cover"
       class="align-end text-white image"

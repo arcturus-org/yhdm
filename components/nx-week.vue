@@ -7,17 +7,12 @@
 
   <v-window v-model="tab">
     <v-window-item v-for="(item, index) in tabs" :key="item" :value="index">
-      <v-list
-        density="compact"
-        rounded
-        class="d-flex flex-column flex-wrap"
-        style="height: 280px"
-      >
+      <v-list class="d-flex flex-column flex-wrap week-list" density="compact">
         <nx-list-item
+          class="week-list-item"
           v-for="(item, idx) in $store.home.week[index + 1]"
           :key="idx"
           :content="item"
-          style="width: 33%"
         >
         </nx-list-item>
       </v-list>
@@ -36,8 +31,24 @@ const tabs = ['周一', '周二', '周三', '周四', '周五', '周六', '周�
 const tab = ref(new Date().getDay() - 1);
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .tab {
-  min-width: 60px !important;
+  min-width: 36px !important;
+}
+
+@media screen and (max-width: 600px) {
+  :deep(.v-slide-group__content) {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .week-list {
+    height: 320px;
+
+    .week-list-item {
+      width: 33.3%;
+    }
+  }
 }
 </style>

@@ -25,7 +25,7 @@ export const useStore = defineStore('store', {
 
       this.$patch({
         home: res,
-        // loading: false,
+        loading: false,
       });
     },
   },

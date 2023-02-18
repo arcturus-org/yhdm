@@ -1,5 +1,5 @@
 <template>
-  <v-list-item :value="content">
+  <v-list-item :value="content" nav :href="`info/${content.id}`">
     <template v-slot:prepend>
       <v-chip class="ma-2" size="x-small" :color="content.color">
         {{ content.level }}
@@ -7,9 +7,11 @@
     </template>
 
     <v-list-item-title>
-      <v-row no-gutters>
+      <v-row dense>
         <v-col :cols="7" class="text-truncate">{{ content.name }}</v-col>
-        <v-col :cols="5" class="text-right text-truncate">{{ content.status }}</v-col>
+        <v-col :cols="5" class="text-right text-truncate">{{
+          content.status
+        }}</v-col>
       </v-row>
     </v-list-item-title>
   </v-list-item>
