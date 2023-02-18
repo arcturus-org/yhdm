@@ -1,37 +1,25 @@
 <div align="center">
 
-<h1>🌺 樱花动漫</h1>
+<h1>樱花动漫</h1>
 
 使用 nuxt 实现的樱花动漫客户端, 仅用于学习, 侵删
 
 </div>
 
-## Setup
-
-Make sure to install the dependencies:
+## 本地开发
 
 ```bash
-pnpm install
+pnpm install # 安装依赖
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
 ```bash
-pnpm run dev
+pnpm run dev # 开发模式
 ```
 
-## Production
-
-Build the application for production:
-
 ```bash
-pnpm run build
+pnpm run build # 构建生产版本
 ```
 
-Locally preview production build:
-
 ```bash
-pnpm run preview
+pnpm run preview # 生产版本预览
 ```
