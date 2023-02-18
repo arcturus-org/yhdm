@@ -1,9 +1,5 @@
-function chunk<T>(arr: T[], step = 1) {
-  const res: T[][] = [];
+export function matchVideoId(url: string): string {
+  const re = /\/view\/(?<id>\d+)\.html/;
 
-  for (let i = 0; i < arr.length; i += step) {
-    res.push(arr.slice(i, i + step));
-  }
-
-  return res;
+  return re.exec(url)!.groups!.id;
 }
