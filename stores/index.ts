@@ -3,37 +3,29 @@ import { defineStore } from 'pinia';
 export const useStore = defineStore('store', {
   state: (): IState => {
     return {
-      weeks: {},
-      jnew: [],
-      jhot: [],
-      cnew: [],
-      chot: [],
-      unew: [],
-      uhot: [],
-      mnew: [],
-      mhot: [],
+      home: {
+        week: {},
+        latest_japanese_anime: [],
+        hottest_japanese_anime: [],
+        latest_chinese_anime: [],
+        hottest_chinese_anime: [],
+        latest_american_anime: [],
+        hottest_american_anime: [],
+        latest_anime_movie: [],
+        hottest_anime_movie: [],
+      },
       loading: true,
     };
   },
   actions: {
-    async getHomeData() {
+    async homeData() {
       this.loading = true;
 
-      const res: IHomeDataRes = await $fetch('/api/home');
-
-      this.weeks = res.weeks;
+      const res: HomeRes = await $fetch('/api/home');
 
       this.$patch({
-        weeks: res.weeks,
-        jnew: res.jnew,
-        jhot: res.jhot,
-        cnew: res.cnew,
-        chot: res.chot,
-        mnew: res.mnew,
-        mhot: res.mhot,
-        unew: res.unew,
-        uhot: res.uhot,
-        loading: false,
+        home: res,
+        // loading: false,
       });
     },
   },
