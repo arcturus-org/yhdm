@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
     '@stores': resolve(__dirname, './stores'),
     '@utils': resolve(__dirname, './utils'),
+    '@server': resolve(__dirname, './server'),
     '@components': resolve(__dirname, './components'),
   },
   runtimeConfig: {
