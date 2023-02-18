@@ -38,7 +38,8 @@ export default defineNuxtConfig({
         },
         {
           name: 'description',
-          content: '上万集高清晰画质的在线动漫, 观看免费、无须注册、高速播放、更新及时',
+          content:
+            '上万集高清晰画质的在线动漫, 观看免费、无须注册、高速播放、更新及时',
         },
       ],
       link: [
@@ -50,5 +51,9 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/css/global.scss', 'vuetify/lib/styles/main.sass'],
+  css: [
+    '~/assets/css/global.scss',
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css',
+  ],
 });
