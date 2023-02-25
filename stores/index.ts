@@ -4,17 +4,26 @@ export const useStore = defineStore('store', {
   state: (): IState => {
     return {
       home: {
-        week: {},
-        latest_japanese_anime: [],
-        hottest_japanese_anime: [],
-        latest_chinese_anime: [],
-        hottest_chinese_anime: [],
-        latest_american_anime: [],
-        hottest_american_anime: [],
-        latest_anime_movie: [],
-        hottest_anime_movie: [],
+        week: [],
+        chinese: {
+          l: [],
+          h: [],
+        },
+        american: {
+          l: [],
+          h: [],
+        },
+        japanese: {
+          l: [],
+          h: [],
+        },
+        movies: {
+          l: [],
+          h: [],
+        },
       },
       loading: true,
+      detail: {},
     };
   },
   actions: {
@@ -25,6 +34,17 @@ export const useStore = defineStore('store', {
 
       this.$patch({
         home: res,
+        loading: false,
+      });
+    },
+
+    async detailInfo(vid: string) {
+      this.loading = true;
+
+      const res: ViewRes = await $fetch(`/api/detail?vid=${vid}`);
+
+      this.$patch({
+        detail: res,
         loading: false,
       });
     },

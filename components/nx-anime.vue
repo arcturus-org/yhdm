@@ -7,7 +7,7 @@
       </v-row>
 
       <v-row dense class="flex-grow-1">
-        <v-col v-for="item in n" :key="item.title" cols="4" md="2">
+        <v-col v-for="item in l" :key="item.name" cols="4" md="2">
           <nx-card :content="item"></nx-card>
         </v-col>
       </v-row>
@@ -20,8 +20,7 @@
       </v-row>
 
       <v-list class="d-flex flex-column flex-wrap" density="compact" nav>
-        <nx-list-item v-for="(item, index) in h" :key="index" :content="item">
-        </nx-list-item>
+        <nx-list-item v-for="(item, index) in h" :key="index" :content="item" />
       </v-list>
     </v-col>
   </v-row>
@@ -34,35 +33,15 @@ import { useStore } from '@stores';
 const $store = useStore();
 
 const props = defineProps<{
-  type: 'japan' | 'china' | 'movies' | 'usa';
+  type: vType;
   title: string;
 }>();
 
-// latest
-const n = computed(() => {
-  switch (props.type) {
-    case 'japan':
-      return $store.home.latest_japanese_anime;
-    case 'china':
-      return $store.home.latest_chinese_anime;
-    case 'usa':
-      return $store.home.latest_american_anime;
-    case 'movies':
-      return $store.home.latest_anime_movie;
-  }
+const l = computed(() => {
+  return $store.home[props.type].l;
 });
 
-// hottest
 const h = computed(() => {
-  switch (props.type) {
-    case 'japan':
-      return $store.home.hottest_japanese_anime;
-    case 'china':
-      return $store.home.hottest_chinese_anime;
-    case 'usa':
-      return $store.home.hottest_american_anime;
-    case 'movies':
-      return $store.home.hottest_anime_movie;
-  }
+  return $store.home[props.type].h;
 });
 </script>

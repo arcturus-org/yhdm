@@ -9,9 +9,9 @@
     <v-list-item-title>
       <v-row dense>
         <v-col :cols="7" class="text-truncate">{{ content.name }}</v-col>
-        <v-col :cols="5" class="text-right text-truncate">{{
-          content.status
-        }}</v-col>
+        <v-col :cols="5" class="text-right text-truncate">
+          {{ content.status }}
+        </v-col>
       </v-row>
     </v-list-item-title>
   </v-list-item>
@@ -19,6 +19,6 @@
 
 <script setup lang="ts">
 defineProps<{
-  content: L;
+  content: VList;
 }>();
 </script>

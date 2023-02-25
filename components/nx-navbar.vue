@@ -55,9 +55,9 @@ const $route = useRoute();
 
 const navigations = [
   { name: '首页', to: '/' },
-  { name: '日本动漫', to: '/japan' },
-  { name: '国产动漫', to: '/china' },
-  { name: '美国动漫', to: '/usa' },
+  { name: '日本动漫', to: '/japanese' },
+  { name: '国产动漫', to: '/chinese' },
+  { name: '美国动漫', to: '/american' },
   { name: '动漫电影', to: '/movies' },
 ];
 

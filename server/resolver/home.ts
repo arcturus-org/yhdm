@@ -1,10 +1,10 @@
 import { CheerioAPI, load } from 'cheerio';
 import { levelColor, videoId } from '@utils';
 
-const newResolver = function ($: CheerioAPI, e: any) {
+const _l = function ($: CheerioAPI, e: any) {
   const div = $(e).children('li').children('div');
 
-  const l: LA[] = [];
+  const l: CList[] = [];
 
   div.each(function () {
     const el = $(this);
@@ -14,7 +14,7 @@ const newResolver = function ($: CheerioAPI, e: any) {
 
     l.push({
       cover: a.data('original') as string,
-      title: a.attr('title')!,
+      name: a.attr('title')!,
       score: a.find('.tag').first().text(),
       year: a.find('.tag').last().text(),
       role: div.children('p').text().replace('主演：', ''),
@@ -26,10 +26,10 @@ const newResolver = function ($: CheerioAPI, e: any) {
   return l;
 };
 
-const hotResolver = function ($: CheerioAPI, e: any) {
+const _h = function ($: CheerioAPI, e: any) {
   const a = $(e).children('li').children('a');
 
-  const h: H[] = [];
+  const h: HList[] = [];
 
   a.each(function (idx) {
     const el = $(this);
@@ -46,13 +46,11 @@ const hotResolver = function ($: CheerioAPI, e: any) {
   return h;
 };
 
-export const homeResolver = function (res: string): HomeRes {
-  const $ = load(res);
-
-  const week: WM = {};
+const _w = ($: CheerioAPI) => {
+  const week: WList = [];
 
   for (let i = 1; i <= 7; i++) {
-    const day: W[] = [];
+    const day: DList[] = [];
 
     const a = $(`#week${i} a`);
 
@@ -68,22 +66,36 @@ export const homeResolver = function (res: string): HomeRes {
       });
     });
 
-    week[i] = day;
+    week.push(day);
   }
+
+  return week;
+};
+
+export const homeResolver = function (res: string): HomeRes {
+  const $ = load(res);
 
   const l = $('.myui-vodlist.clearfix');
 
   const h = $('.myui-vodlist__text.active.clearfix');
 
   return {
-    week,
-    latest_japanese_anime: newResolver($, l[0]),
-    hottest_japanese_anime: hotResolver($, h[0]),
-    latest_chinese_anime: newResolver($, l[1]),
-    hottest_chinese_anime: hotResolver($, h[1]),
-    latest_anime_movie: newResolver($, l[2]),
-    hottest_anime_movie: hotResolver($, h[2]),
-    latest_american_anime: newResolver($, l[3]),
-    hottest_american_anime: hotResolver($, h[3]),
+    week: _w($),
+    japanese: {
+      l: _l($, l[0]),
+      h: _h($, h[0]),
+    },
+    chinese: {
+      l: _l($, l[1]),
+      h: _h($, h[1]),
+    },
+    movies: {
+      l: _l($, l[2]),
+      h: _h($, h[2]),
+    },
+    american: {
+      l: _l($, l[3]),
+      h: _h($, h[3]),
+    },
   };
 };

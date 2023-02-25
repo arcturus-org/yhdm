@@ -25,7 +25,7 @@
     </v-img>
 
     <v-card-item>
-      <v-card-title style="font-size: 15px">{{ content.title }}</v-card-title>
+      <v-card-title :style="{ fontSize: 15 }">{{ content.name }}</v-card-title>
       <v-card-subtitle> 主演: {{ content.role }} </v-card-subtitle>
     </v-card-item>
   </v-card>
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  content: LA;
+  content: CList;
 }>();
 </script>
 
