@@ -1,7 +1,7 @@
 import { CheerioAPI, load } from 'cheerio';
 import { levelColor, videoId } from '@utils';
 
-const _l = function ($: CheerioAPI, e: any) {
+const _l = ($: CheerioAPI, e: any) => {
   const div = $(e).children('li').children('div');
 
   const l: CList[] = [];
@@ -26,7 +26,7 @@ const _l = function ($: CheerioAPI, e: any) {
   return l;
 };
 
-const _h = function ($: CheerioAPI, e: any) {
+const _h = ($: CheerioAPI, e: any) => {
   const a = $(e).children('li').children('a');
 
   const h: HList[] = [];
