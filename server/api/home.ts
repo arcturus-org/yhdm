@@ -1,6 +1,6 @@
 import { defineEventHandler } from 'h3';
 import { useRuntimeConfig } from '#imports';
-import { homeResolver } from '@server/resolver';
+import { homeResolver } from '@server/resolver/home';
 
 export default defineEventHandler(async () => {
   const res: string = await $fetch('/', {

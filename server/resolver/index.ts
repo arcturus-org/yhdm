@@ -1,1 +1,0 @@
-export { homeResolver } from './home';
