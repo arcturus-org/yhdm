@@ -41,7 +41,7 @@ export const useStore = defineStore('store', {
     async detailInfo(vid: string) {
       this.loading = true;
 
-      const res: ViewRes = await $fetch(`/api/detail?vid=${vid}`);
+      const res: ViewRes = await $fetch(`/api/info?vid=${vid}`);
 
       this.$patch({
         detail: res,
