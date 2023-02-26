@@ -43,6 +43,7 @@ export const useStore = defineStore('store', {
         },
         like: [],
         playList: [],
+        hot: [],
       },
     };
   },
