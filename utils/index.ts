@@ -4,6 +4,30 @@ export const videoId = (url: string): string => {
   return re.exec(url)!.groups!.id;
 };
 
+export const getDirector = (str: string) => {
+  const re = /导演：(.+)/;
+
+  const res = re.exec(str);
+
+  if (res) {
+    return res[1].trim().split('\xa0');
+  }
+
+  return [];
+};
+
+export const getActors = (str: string) => {
+  const re = /主演：(.+)/;
+
+  const res = re.exec(str);
+
+  if (res) {
+    return res[1].trim().split('\xa0');
+  }
+
+  return [];
+};
+
 export const levelColor = (level: number) => {
   switch (level) {
     case 0:

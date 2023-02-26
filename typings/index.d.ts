@@ -127,7 +127,101 @@ interface HomeRes {
   };
 }
 
-interface ViewRes {}
+interface VideoInfo {
+  /**
+   * 视频名称
+   */
+  name: string;
+
+  rating: {
+    /**
+     * 视频评分
+     */
+    score: number;
+
+    /**
+     * 视频星数
+     */
+    star: number;
+
+    /**
+     * 推荐评价
+     */
+    ratewords: string;
+  };
+
+  /**
+   * 视频更新状态
+   */
+  status: string;
+
+  /**
+   * 视频更新时间
+   */
+  updateTime: Date;
+
+  /**
+   * 视频封面
+   */
+  cover: string;
+
+  /**
+   * 主演
+   */
+  actors: string[];
+
+  /**
+   * 导演
+   */
+  director: string[];
+
+  /**
+   * 分类
+   */
+  category: string;
+
+  /**
+   * 地区
+   */
+  region: string;
+
+  /**
+   * 年份
+   */
+  year: string;
+
+  /**
+   * 简介
+   */
+  introduction: string;
+}
+
+interface PlayList {
+  source: string;
+  set: number;
+}
+
+interface ViewRes {
+  /**
+   * 视频详细信息
+   */
+  video: videoInfo;
+
+  /**
+   * 播放地址
+   */
+  playList: PlayList[];
+
+  /**
+   * 猜你喜欢
+   */
+  like: CList[];
+
+  /**
+   * 热播
+   */
+  hot: VList[];
+}
 
 interface IState {
   /**

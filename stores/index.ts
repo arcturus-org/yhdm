@@ -23,7 +23,27 @@ export const useStore = defineStore('store', {
         },
       },
       loading: true,
-      detail: {},
+      detail: {
+        video: {
+          name: '',
+          rating: {
+            star: 0,
+            score: 0,
+            ratewords: '',
+          },
+          status: '',
+          updateTime: undefined,
+          cover: '',
+          actors: [],
+          director: '',
+          category: '',
+          region: '',
+          year: '',
+          introduction: '',
+        },
+        like: [],
+        playList: [],
+      },
     };
   },
   actions: {
