@@ -1,5 +1,5 @@
 <template>
-  <v-list-item :value="content" nav :href="`view/${content.id}`">
+  <v-list-item :value="content" nav :href="`/view/${content.id}`">
     <template v-slot:prepend>
       <v-chip class="ma-2" size="x-small" :color="content.color">
         {{ content.level }}
