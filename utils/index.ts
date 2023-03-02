@@ -61,3 +61,26 @@ export const typeToRoute = function (t: string) {
       return 'home';
   }
 };
+
+export const dateToString = function (date: Date | string) {
+  if (typeof date === 'string') {
+    date = new Date(date);
+  }
+
+  const year = date.getFullYear();
+  const month = padZero(date.getMonth() + 1);
+  const day = padZero(date.getDate());
+  const hour = padZero(date.getHours());
+  const minute = padZero(date.getMinutes());
+  const second = padZero(date.getSeconds());
+
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+};
+
+const padZero = (num: number) => {
+  if (num < 10) {
+    return `0${num}`;
+  } else {
+    return `${num}`;
+  }
+};
