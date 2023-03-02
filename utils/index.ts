@@ -77,7 +77,7 @@ export const dateToString = function (date: Date | string) {
   return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 };
 
-const padZero = (num: number) => {
+export const padZero = (num: number) => {
   if (num < 10) {
     return `0${num}`;
   } else {
