@@ -3,7 +3,7 @@
     <v-img
       :src="content.cover"
       class="align-end text-white image"
-      height="240"
+      :height="height ?? 240"
       cover
     >
       <div class="mask"></div>
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 defineProps<{
   content: CList;
+  height: number;
 }>();
 </script>
 
