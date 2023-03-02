@@ -35,7 +35,7 @@ export const useStore = defineStore('store', {
           updateTime: undefined,
           cover: '',
           actors: [],
-          director: '',
+          director: [],
           category: '',
           region: '',
           year: '',

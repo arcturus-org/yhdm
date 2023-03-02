@@ -158,7 +158,7 @@ interface VideoInfo {
   /**
    * 视频更新时间
    */
-  updateTime: Date;
+  updateTime?: Date;
 
   /**
    * 视频封面
@@ -205,7 +205,7 @@ interface ViewRes {
   /**
    * 视频详细信息
    */
-  video: videoInfo;
+  video: VideoInfo;
 
   /**
    * 播放地址
