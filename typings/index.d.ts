@@ -129,6 +129,19 @@ interface HomeRes {
 
 interface VideoInfo {
   /**
+   * 视频类型
+   */
+  type: {
+    /**
+     * 中文类型
+     */
+    c: string;
+    /**
+     * 路由
+     */
+    r: string;
+  };
+  /**
    * 视频名称
    */
   name: string;

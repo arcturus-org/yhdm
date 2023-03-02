@@ -25,6 +25,10 @@ export const useStore = defineStore('store', {
       loading: true,
       detail: {
         video: {
+          type: {
+            c: '',
+            r: '',
+          },
           name: '',
           rating: {
             star: 0,

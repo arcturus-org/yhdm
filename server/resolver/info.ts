@@ -1,5 +1,5 @@
 import { load } from 'cheerio';
-import { getActors, getDirector, levelColor, videoId } from '@utils';
+import { getActors, getDirector, levelColor, typeToRoute, videoId } from '@utils';
 
 export const infoResolver = (res: string): ViewRes => {
   const $ = load(res);
@@ -62,7 +62,13 @@ export const infoResolver = (res: string): ViewRes => {
     });
   });
 
+  const type = $('.myui-header__menu .active').children('a').text();
+
   const video: VideoInfo = {
+    type: {
+      c: type,
+      r: typeToRoute(type),
+    },
     name: title,
     rating: {
       star: Number($('#rating').data('score')),

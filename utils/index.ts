@@ -46,3 +46,18 @@ export const log = (msg: any, ...optionalParams: any[]) => {
     console.log(msg, ...optionalParams);
   }
 };
+
+export const typeToRoute = function (t: string) {
+  switch (t) {
+    case '日本动漫':
+      return 'japanese';
+    case '国产动漫':
+      return 'chinese';
+    case '美国动漫':
+      return 'american';
+    case '动漫电影':
+      return 'movies';
+    default:
+      return 'home';
+  }
+};
