@@ -1,6 +1,7 @@
 <template>
-  <div class="d-flex">
-    <div class="text-h4 mr-4">播放地址</div>
+  <div class="d-md-flex">
+    <div class="text-h4 mr-md-4 mb-md-0 mb-2">播放地址</div>
+
     <v-tabs v-model="tab" align-tabs="start" density="compact" color="#1E88E5">
       <v-tab
         v-for="(item, index) in playList"
@@ -41,7 +42,7 @@ const tab = ref(0);
 <style scoped lang="scss">
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fit, 80px);
   gap: 12px;
 }
 </style>

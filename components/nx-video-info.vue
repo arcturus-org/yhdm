@@ -4,9 +4,14 @@
       <v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
     </v-col>
 
-    <v-col cols="12" sm="6" md="4">
-      <v-card>
-        <v-img cover :src="video.cover" alt="anime cover" />
+    <v-col cols="12" sm="5" md="3">
+      <v-card style="height: 100%">
+        <v-img
+          style="height: 100%"
+          :src="video.cover"
+          alt="anime cover"
+          cover
+        />
       </v-card>
     </v-col>
 
@@ -54,7 +59,7 @@
         <text class="ml-1"> 时间： {{ dateToString(video.updateTime!) }} </text>
       </div>
 
-      <div class="my-4 d-flex align-center">
+      <div class="my-4 d-flex align-center flex-wrap">
         <v-icon icon="mdi-account-multiple-outline" color="#2196F3"></v-icon>
 
         <text class="ml-1 mr-3">角色：</text>
@@ -64,13 +69,13 @@
           density="comfortable"
           v-for="item in video.actors"
           :key="item"
-          class="mr-2"
+          class="mr-2 my-1"
         >
           {{ item }}
         </v-chip>
       </div>
 
-      <div class="my-4 d-flex align-center">
+      <div class="my-4 d-flex align-center flex-wrap">
         <v-icon icon="mdi-account-edit " color="#FF9800"></v-icon>
 
         <text class="ml-1 mr-3">导演：</text>
@@ -80,7 +85,7 @@
           density="comfortable"
           v-for="item in video.director"
           :key="item"
-          class="mr-2"
+          class="mr-2 my-1"
         >
           {{ item }}
         </v-chip>

@@ -1,10 +1,10 @@
 <template>
-  <v-layout full-height>
+  <v-app full-height id="inspire">
     <navbar />
     <v-main>
       <slot />
     </v-main>
-  </v-layout>
+  </v-app>
 </template>
 
 <script setup lang="ts">
