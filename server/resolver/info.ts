@@ -1,5 +1,11 @@
 import { load } from 'cheerio';
-import { getActors, getDirector, levelColor, typeToRoute, videoId } from '@utils';
+import {
+  getActors,
+  getDirector,
+  levelColor,
+  typeToRoute,
+  videoId,
+} from '@utils';
 
 export const infoResolver = (res: string): ViewRes => {
   const $ = load(res);
@@ -86,11 +92,11 @@ export const infoResolver = (res: string): ViewRes => {
     region: $(data_a[1]).text(),
     year: $(data_a[2]).text().replace(/\t/g, ''),
     introduction: $('span.data > p').text(),
+    playList,
   };
 
   return {
     video,
-    playList,
     like,
     hot,
   };

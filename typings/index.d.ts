@@ -207,6 +207,11 @@ interface VideoInfo {
    * 简介
    */
   introduction: string;
+
+  /**
+   * 播放地址
+   */
+  playList: PlayList[];
 }
 
 interface PlayList {
@@ -219,11 +224,6 @@ interface ViewRes {
    * 视频详细信息
    */
   video: VideoInfo;
-
-  /**
-   * 播放地址
-   */
-  playList: PlayList[];
 
   /**
    * 猜你喜欢

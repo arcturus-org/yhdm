@@ -44,9 +44,9 @@ export const useStore = defineStore('store', {
           region: '',
           year: '',
           introduction: '',
+          playList: [],
         },
         like: [],
-        playList: [],
         hot: [],
       },
     };
