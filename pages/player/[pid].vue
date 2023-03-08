@@ -7,39 +7,34 @@
     <v-progress-circular indeterminate color="#1E88E5" />
   </div>
 
-  <div v-else class="pb-4" :style="{ padding: '0 150px' }">
-    <div
-      ref="video"
-      :style="{
-        aspectRatio: '16/9',
-        borderRadius: '12px',
-        overflow: 'hidden',
-      }"
-    >
+  <div v-else class="pb-4 wrapper">
+    <div ref="video" :style="{ aspectRatio: '16/9' }">
       <!-- video player -->
     </div>
 
     <div class="text-h4 my-4">{{ $store.player.video.name }}</div>
 
-    <v-chip class="mr-2" color="blue">
-      {{ $store.player.video.updateTime }}
-    </v-chip>
+    <div class="d-flex align-center flex-wrap">
+      <v-chip class="mr-2 my-1" color="blue">
+        {{ $store.player.video.updateTime }}
+      </v-chip>
 
-    <v-chip class="mr-2" color="red">
-      {{ $store.player.video.score }}
-    </v-chip>
+      <v-chip class="mr-2 my-1" color="red">
+        {{ $store.player.video.score }}
+      </v-chip>
 
-    <v-chip class="mr-2" color="green">
-      {{ $store.player.video.type }}
-    </v-chip>
+      <v-chip class="mr-2 my-1" color="green">
+        {{ $store.player.video.type }}
+      </v-chip>
 
-    <v-chip class="mr-2" color="green">
-      {{ $store.player.video.region }}
-    </v-chip>
+      <v-chip class="mr-2 my-1" color="green">
+        {{ $store.player.video.region }}
+      </v-chip>
 
-    <v-chip class="mr-2" color="pink">
-      {{ $store.player.video.year }}
-    </v-chip>
+      <v-chip class="mr-2 my-1" color="pink">
+        {{ $store.player.video.year }}
+      </v-chip>
+    </div>
 
     <div class="my-8">
       <nx-playlist
@@ -152,3 +147,13 @@ onMounted(() => {
   });
 });
 </script>
+
+<style lang="scss">
+.wrapper {
+  padding: 12px 24px;
+
+  @media screen and (min-width: 800px) {
+    padding: 0 150px;
+  }
+}
+</style>
