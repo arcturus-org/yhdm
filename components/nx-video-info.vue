@@ -62,7 +62,7 @@
       <div class="my-4 d-flex align-center flex-wrap">
         <v-icon icon="mdi-account-multiple-outline" color="#2196F3"></v-icon>
 
-        <text class="ml-1 mr-3">角色：</text>
+        <text class="ml-1 mr-3">主演：</text>
 
         <v-chip
           color="#2196F3"

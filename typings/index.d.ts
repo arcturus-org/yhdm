@@ -50,7 +50,7 @@ type HList = VList;
  */
 interface CList extends Video {
   /**
-   * 视频角色
+   * 主演
    */
   role: string;
 
