@@ -23,7 +23,7 @@
         <v-btn
           v-for="i in item.set"
           variant="tonal"
-          color="#2196F3"
+          :color="current === i && src === index ? '#FF9800' : '#2196F3'"
           :href="`/player/${vid}-${index}-${i}`"
         >
           {{ padZero(i) }}
@@ -37,18 +37,20 @@
 import { ref } from '#imports';
 import { padZero } from '@utils';
 
-defineProps<{
+const props = defineProps<{
   playList: PlayList[];
   vid: string;
+  current?: number;
+  src?: number;
 }>();
 
-const tab = ref(0);
+const tab = ref(props.src ?? 0);
 </script>
 
 <style scoped lang="scss">
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 80px);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
 }
 </style>
