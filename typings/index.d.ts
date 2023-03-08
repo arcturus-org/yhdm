@@ -146,6 +146,11 @@ interface VideoInfo {
    */
   name: string;
 
+  /**
+   * video id
+   */
+  id: string;
+
   rating: {
     /**
      * 视频评分

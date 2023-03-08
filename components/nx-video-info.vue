@@ -102,7 +102,7 @@
   </div>
 
   <div class="my-8">
-    <nx-playlist :playList="video.playList"></nx-playlist>
+    <nx-playlist :playList="video.playList" :vid="video.id"></nx-playlist>
   </div>
 </template>
 

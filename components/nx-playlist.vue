@@ -34,6 +34,7 @@ import { padZero } from '@utils';
 
 defineProps<{
   playList: PlayList[];
+  vid: number;
 }>();
 
 const tab = ref(0);

@@ -75,6 +75,7 @@ export const infoResolver = (res: string): ViewRes => {
       c: type,
       r: typeToRoute(type),
     },
+    id: String($('#rating').data('id')),
     name: title,
     rating: {
       star: Number($('#rating').data('score')),

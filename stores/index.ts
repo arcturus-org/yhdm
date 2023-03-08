@@ -29,6 +29,7 @@ export const useStore = defineStore('store', {
             c: '',
             r: '',
           },
+          id: '',
           name: '',
           rating: {
             star: 0,
@@ -72,6 +73,19 @@ export const useStore = defineStore('store', {
         detail: res,
         loading: false,
       });
+    },
+
+    async playerInfo(vid: string, src: number, volume: number) {
+      this.loading = true;
+
+      const res: ViewRes = await $fetch(
+        `/api/player?vid=${vid}&src=${src}&volume=${volume}`
+      );
+
+      // this.$patch({
+      //   detail: res,
+      //   loading: false,
+      // });
     },
   },
 });
