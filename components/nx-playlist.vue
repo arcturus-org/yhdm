@@ -20,7 +20,12 @@
       :value="index"
     >
       <div class="grid">
-        <v-btn v-for="i in item.set" variant="tonal" color="#2196F3">
+        <v-btn
+          v-for="i in item.set"
+          variant="tonal"
+          color="#2196F3"
+          :href="`/player/${vid}-${index}-${i}`"
+        >
           {{ padZero(i) }}
         </v-btn>
       </div>
