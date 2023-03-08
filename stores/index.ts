@@ -50,6 +50,23 @@ export const useStore = defineStore('store', {
         like: [],
         hot: [],
       },
+      player: {
+        like: [],
+        video: {
+          url: '',
+          nextUrl: '',
+          name: '',
+          year: '',
+          updateTime: '',
+          id: '',
+          type: '',
+          region: '',
+          score: '',
+          playList: [],
+          like: 0,
+          negative: 0,
+        },
+      },
     };
   },
   actions: {
@@ -75,17 +92,15 @@ export const useStore = defineStore('store', {
       });
     },
 
-    async playerInfo(vid: string, src: number, volume: number) {
+    async playerInfo(pid: string) {
       this.loading = true;
 
-      const res: ViewRes = await $fetch(
-        `/api/player?vid=${vid}&src=${src}&volume=${volume}`
-      );
+      const res: Player = await $fetch(`/api/player?pid=${pid}`);
 
-      // this.$patch({
-      //   detail: res,
-      //   loading: false,
-      // });
+      this.$patch({
+        player: res,
+        loading: false,
+      });
     },
   },
 });

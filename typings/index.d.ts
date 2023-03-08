@@ -256,4 +256,77 @@ interface IState {
    * 视频详情页数据
    */
   detail: ViewRes;
+
+  /**
+   * 播放页内容
+   */
+  player: Player;
+}
+
+interface PlayerVideoInfo {
+  /**
+   * 视频名称
+   */
+  name: string;
+
+  /**
+   * 播放地址
+   */
+  url: string;
+
+  /**
+   * 下一集
+   */
+  nextUrl: string;
+
+  /**
+   * 视频年份
+   */
+  year: string;
+
+  /**
+   * 更新时间
+   */
+  updateTime: string;
+
+  /**
+   * 视频 id
+   */
+  id: string;
+
+  /**
+   * 视频类型
+   */
+  type: string;
+
+  /**
+   * 视频地区
+   */
+  region: string;
+
+  /**
+   * 评分
+   */
+  score: string;
+
+  /**
+   * 播放列表
+   */
+  playList: PlayList[];
+
+  /**
+   * 点赞数
+   */
+  like: number;
+
+  /**
+   * 差评数
+   */
+  negative: number;
+}
+
+interface Player {
+  video: PlayerVideoInfo;
+
+  like: CList[];
 }

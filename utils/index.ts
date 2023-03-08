@@ -84,3 +84,39 @@ export const padZero = (num: number) => {
     return `${num}`;
   }
 };
+
+export const getUpdateTime = (s: string): string => {
+  const re = /(\d+-\d+-\d+更新)/;
+
+  const res = re.exec(s);
+
+  if (res) {
+    return res[1];
+  }
+
+  return '';
+};
+
+export const getVideoUrl = (s: string): string => {
+  const re = /\"url\":\"(.+?)\"/;
+
+  const res = re.exec(s);
+
+  if (res) {
+    return res[1].replaceAll('\\', '');
+  }
+
+  return '';
+};
+
+export const getNextVideoUrl = (s: string): string => {
+  const re = /\"url_next\":\"(.+?)\"/;
+
+  const res = re.exec(s);
+
+  if (res) {
+    return res[1].replaceAll('\\', '');
+  }
+
+  return '';
+};
