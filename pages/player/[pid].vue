@@ -75,6 +75,7 @@ import Artplayer from 'artplayer';
 // @ts-ignore
 import Hls from 'hls.js/dist/hls.min';
 import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
+import { log } from '@utils';
 
 definePageMeta({
   layout: 'detail',
@@ -143,7 +144,7 @@ onMounted(() => {
           ],
         },
         function onReady() {
-          console.log(this);
+          log(this);
           this.play();
         }
       );
