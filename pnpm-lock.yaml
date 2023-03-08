@@ -7,7 +7,9 @@ specifiers:
   '@types/node': ^18.11.19
   '@vueuse/core': ^9.12.0
   '@vueuse/nuxt': ^9.12.0
+  artplayer: ^4.6.2
   cheerio: 1.0.0-rc.12
+  hls.js: ^1.3.4
   node-fetch-native: ^1.0.2
   nuxt: ^3.1.2
   pinia: ^2.0.30
@@ -22,7 +24,9 @@ dependencies:
   '@pinia/nuxt': 0.4.6_hmuptsblhheur2tugfgucj7gc4
   '@vueuse/core': 9.12.0_vue@3.2.47
   '@vueuse/nuxt': 9.12.0_nuxt@3.1.2+vue@3.2.47
+  artplayer: 4.6.2
   cheerio: 1.0.0-rc.12
+  hls.js: 1.3.4
   node-fetch-native: 1.0.2
   pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
   sass: 1.58.0
@@ -1597,6 +1601,12 @@ packages:
       delegates: 1.0.0
       readable-stream: 3.6.0
 
+  /artplayer/4.6.2:
+    resolution: {integrity: sha512-9RMfFFy2wGgHUCnrwk+M2Z5OiLWQcBL+YzkSBwSi6IuJG6oM+TlfJJZt09RL2iag6DNQ+AUYtB879WUHxbqfIQ==}
+    dependencies:
+      option-validator: 2.0.6
+    dev: false
+
   /assertion-error/1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
     dev: true
@@ -2674,6 +2684,10 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
+  /hls.js/1.3.4:
+    resolution: {integrity: sha512-iFEwVqtEDk6sKotcTwtJ5OMo/nuDTk9PrpB8FI2J2WYf8EriTVfR4FaK0aNyYtwbYeRSWCXJKlz23xeREdlNYg==}
+    dev: false
+
   /hookable/5.4.2:
     resolution: {integrity: sha512-6rOvaUiNKy9lET1X0ECnyZ5O5kSV0PJbtA5yZUgdEF7fGJEVwSLSislltyt7nFwVVALYHQJtfGeAR2Y0A0uJkg==}
 
@@ -2929,6 +2943,11 @@ packages:
       universalify: 2.0.0
     optionalDependencies:
       graceful-fs: 4.2.10
+
+  /kind-of/6.0.3:
+    resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /klona/2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
@@ -3479,6 +3498,12 @@ packages:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  /option-validator/2.0.6:
+    resolution: {integrity: sha512-tmZDan2LRIRQyhUGvkff68/O0R8UmF+Btmiiz0SmSw2ng3CfPZB9wJlIjHpe/MKUZqyIZkVIXCrwr1tIN+0Dzg==}
+    dependencies:
+      kind-of: 6.0.3
+    dev: false
 
   /ora/6.1.2:
     resolution: {integrity: sha512-EJQ3NiP5Xo94wJXIzAyOtSb0QEIAUu7m8t6UZ9krbz0vAJqr92JpcK/lEXg91q6B9pEGqrykkd2EQplnifDSBw==}
