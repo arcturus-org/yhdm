@@ -1,5 +1,11 @@
 import { load } from 'cheerio';
-import { getNextVideoUrl, getUpdateTime, getVideoUrl, videoId } from '@utils';
+import {
+  getActors,
+  getNextVideoUrl,
+  getUpdateTime,
+  getVideoUrl,
+  videoId,
+} from '@utils';
 
 export const playerResolver = (res: string): Player => {
   const $ = load(res);
@@ -44,7 +50,7 @@ export const playerResolver = (res: string): Player => {
     const div = a.next();
 
     like.push({
-      role: div.children('p').text().replace('主演：', ''),
+      actors: getActors(div.children('p').text(), ','),
       cover: a.data('original') as string,
       year: a.find('.tag').last().text(),
       score: a.find('.tag').first().text(),

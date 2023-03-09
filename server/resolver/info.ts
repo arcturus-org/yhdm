@@ -42,7 +42,7 @@ export const infoResolver = (res: string): ViewRes => {
     const div = a.next();
 
     like.push({
-      role: div.children('p').text().replace('主演：', ''),
+      actors: getActors(div.children('p').text()),
       cover: a.data('original') as string,
       year: a.find('.tag').last().text(),
       score: a.find('.tag').first().text(),

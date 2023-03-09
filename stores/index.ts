@@ -67,6 +67,11 @@ export const useStore = defineStore('store', {
           negative: 0,
         },
       },
+      search: {
+        search: [],
+        hot: [],
+        page: 0,
+      },
     };
   },
   actions: {
@@ -99,6 +104,17 @@ export const useStore = defineStore('store', {
 
       this.$patch({
         player: res,
+        loading: false,
+      });
+    },
+
+    async searchInfo(key: string) {
+      this.loading = true;
+
+      const res: SearchRes = await $fetch(`/api/search?key=${key}`);
+
+      this.$patch({
+        search: res,
         loading: false,
       });
     },

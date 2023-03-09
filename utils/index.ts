@@ -4,25 +4,25 @@ export const videoId = (url: string): string => {
   return re.exec(url)!.groups!.id;
 };
 
-export const getDirector = (str: string) => {
+export const getDirector = (str: string, sep: string = '\xa0') => {
   const re = /导演：(.+)/;
 
   const res = re.exec(str);
 
   if (res) {
-    return res[1].trim().split('\xa0');
+    return res[1].trim().split(sep);
   }
 
   return [];
 };
 
-export const getActors = (str: string) => {
+export const getActors = (str: string, sep: string = '\xa0') => {
   const re = /主演：(.+)/;
 
   const res = re.exec(str);
 
   if (res) {
-    return res[1].trim().split('\xa0');
+    return res[1].trim().split(sep);
   }
 
   return [];
@@ -116,6 +116,30 @@ export const getNextVideoUrl = (s: string): string => {
 
   if (res) {
     return res[1].replaceAll('\\', '');
+  }
+
+  return '';
+};
+
+export const getTags = (s: string): string[] => {
+  const re = /分类：(.+)地区：(.+)年份：(.+)/;
+
+  const res = re.exec(s);
+
+  if (res) {
+    return [res[1], res[2], res[3]];
+  }
+
+  return [];
+};
+
+export const getBrief = (s: string): string => {
+  const re = /简介：(.+)详情/;
+
+  const res = re.exec(s);
+
+  if (res) {
+    return res[1];
   }
 
   return '';

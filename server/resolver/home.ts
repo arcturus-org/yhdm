@@ -1,5 +1,5 @@
 import { CheerioAPI, load } from 'cheerio';
-import { levelColor, videoId } from '@utils';
+import { getActors, levelColor, videoId } from '@utils';
 
 const _l = ($: CheerioAPI, e: any) => {
   const div = $(e).children('li').children('div');
@@ -17,7 +17,7 @@ const _l = ($: CheerioAPI, e: any) => {
       name: a.attr('title')!,
       score: a.find('.tag').first().text(),
       year: a.find('.tag').last().text(),
-      role: div.children('p').text().replace('主演：', ''),
+      actors: getActors(div.children('p').text(), ','),
       status: a.children('span').last().text(),
       id: videoId(a.attr('href')!),
     });

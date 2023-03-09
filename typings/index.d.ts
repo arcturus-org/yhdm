@@ -52,7 +52,17 @@ interface CList extends Video {
   /**
    * 主演
    */
-  role: string;
+  actors: string[];
+
+  /**
+   * 导演
+   */
+  director?: string[];
+
+  /**
+   * 简介
+   */
+  brief?: string;
 
   /**
    * 视频封面
@@ -68,6 +78,11 @@ interface CList extends Video {
    * 评分
    */
   score: string;
+
+  /**
+   * 分类
+   */
+  tags?: string[];
 }
 
 type vType = 'japanese' | 'chinese' | 'movies' | 'american';
@@ -261,6 +276,11 @@ interface IState {
    * 播放页内容
    */
   player: Player;
+
+  /**
+   * 搜索结果
+   */
+  search: SearchRes;
 }
 
 interface PlayerVideoInfo {
@@ -329,4 +349,21 @@ interface Player {
   video: PlayerVideoInfo;
 
   like: CList[];
+}
+
+interface SearchRes {
+  /**
+   * 搜索结果
+   */
+  search: CList[];
+
+  /**
+   * 热榜
+   */
+  hot: VList[];
+
+  /**
+   * 搜索页数
+   */
+  page: number;
 }
