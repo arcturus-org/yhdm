@@ -86,7 +86,8 @@ const current = computed(() =>
 
 const drawer = ref(false);
 
-const searchText = ref('');
+const searchText = ref($route.query.key as string);
+
 const search = () => {
   if (searchText.value) {
     log(`您搜索了 ${searchText.value}`);
