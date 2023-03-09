@@ -20,7 +20,7 @@ export const infoResolver = (res: string): ViewRes => {
 
   const actors = getActors($(data[2]).text());
 
-  const director = getDirector($(data[3]).text());
+  const directors = getDirector($(data[3]).text());
 
   const play_a = $('ul.nav a');
 
@@ -88,7 +88,7 @@ export const infoResolver = (res: string): ViewRes => {
     updateTime: new Date(status[1]),
     cover: $('img.lazyload').data('original') as string,
     actors,
-    director,
+    directors,
     category: $(data_a[0]).text(),
     region: $(data_a[1]).text(),
     year: $(data_a[2]).text().replace(/\t/g, ''),

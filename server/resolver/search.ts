@@ -21,7 +21,7 @@ export const searchResolver = (res: string): SearchRes => {
 
     search.push({
       actors: getActors($(p[1]).text(), ','),
-      director: getDirector($(p[0]).text(), ','),
+      directors: getDirector($(p[0]).text(), ','),
       cover: a.data('original') as string,
       year: a.find('.tag').last().text(),
       score: a.find('.tag').first().text(),

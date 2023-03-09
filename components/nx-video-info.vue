@@ -83,7 +83,7 @@
         <v-chip
           color="#FF9800"
           density="comfortable"
-          v-for="item in video.director"
+          v-for="item in video.directors"
           :key="item"
           class="mr-2 my-1"
         >

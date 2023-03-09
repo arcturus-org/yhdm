@@ -57,7 +57,7 @@ interface CList extends Video {
   /**
    * 导演
    */
-  director?: string[];
+  directors?: string[];
 
   /**
    * 简介
@@ -206,7 +206,7 @@ interface VideoInfo {
   /**
    * 导演
    */
-  director: string[];
+  directors: string[];
 
   /**
    * 分类
