@@ -49,7 +49,13 @@ export const searchResolver = (res: string): SearchRes => {
     });
   });
 
-  const p = $('.myui-page li.hidden-xs a');
+  const a = $('.myui-page li.hidden-xs a');
 
-  return { search, hot, page: p.length };
+  const page = {
+    start: Number(a.first().text()),
+    end: Number(a.last().text()),
+    len: a.length,
+  };
+
+  return { search, hot, page };
 };

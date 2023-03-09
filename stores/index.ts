@@ -70,7 +70,11 @@ export const useStore = defineStore('store', {
       search: {
         search: [],
         hot: [],
-        page: 0,
+        page: {
+          start: 0,
+          end: 0,
+          len: 0,
+        },
       },
     };
   },
@@ -108,10 +112,14 @@ export const useStore = defineStore('store', {
       });
     },
 
-    async searchInfo(key: string) {
-      this.loading = true;
+    async searchInfo(key: string, page = 1, loading = true) {
+      if (loading) {
+        this.loading = true;
+      }
 
-      const res: SearchRes = await $fetch(`/api/search?key=${key}`);
+      const res: SearchRes = await $fetch(
+        `/api/search?key=${key}&page=${page}`
+      );
 
       this.$patch({
         search: res,

@@ -365,5 +365,9 @@ interface SearchRes {
   /**
    * 搜索页数
    */
-  page: number;
+  page: {
+    start: number;
+    end: number;
+    len: number;
+  };
 }

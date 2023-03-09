@@ -50,9 +50,9 @@ defineProps<{
     bottom: 0;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.8) 100%
     );
   }
 

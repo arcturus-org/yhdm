@@ -10,7 +10,13 @@ export const getDirector = (str: string, sep: string = '\xa0') => {
   const res = re.exec(str);
 
   if (res) {
-    return res[1].trim().split(sep);
+    const r = res[1].trim().split(sep);
+
+    if (r[r.length - 1] === '') {
+      r.pop();
+    }
+
+    return r;
   }
 
   return [];
@@ -22,7 +28,14 @@ export const getActors = (str: string, sep: string = '\xa0') => {
   const res = re.exec(str);
 
   if (res) {
-    return res[1].trim().split(sep);
+    const r = res[1].trim().split(sep);
+
+    // remove last element of array if it is empty.
+    if (r[r.length - 1] === '') {
+      r.pop();
+    }
+
+    return r;
   }
 
   return [];
@@ -142,5 +155,5 @@ export const getBrief = (s: string): string => {
     return res[1];
   }
 
-  return '';
+  return '暂无';
 };
