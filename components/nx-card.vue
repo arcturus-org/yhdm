@@ -26,7 +26,7 @@
 
     <v-card-item>
       <v-card-title :style="{ fontSize: 15 }">{{ content.name }}</v-card-title>
-      <v-card-subtitle> 主演: {{ content.role }} </v-card-subtitle>
+      <v-card-subtitle> 主演: {{ content.actors.join(',') }} </v-card-subtitle>
     </v-card-item>
   </v-card>
 </template>
