@@ -34,7 +34,7 @@
 <script setup lang="ts">
 defineProps<{
   content: CList;
-  height: number;
+  height?: number;
 }>();
 </script>
 
