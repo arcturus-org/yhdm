@@ -26,7 +26,7 @@
   <v-app-bar :elevation="0" class="border-b w-100" density="comfortable">
     <v-app-bar-nav-icon class="d-sm-none" @click="drawer = !drawer" />
 
-    <v-toolbar-title>
+    <v-toolbar-title class="nx-title-wrapper">
       <div class="d-flex align-center justify-start">
         <img src="/favicon.svg" alt="logo" class="logo d-none d-sm-flex" />
         <div class="mr-4 ml-2 d-none d-sm-flex">{{ $config.public.name }}</div>
@@ -49,11 +49,10 @@
 
         <v-text-field
           density="compact"
-          class="flex-grow-0"
-          variant="outlined"
-          style="width: 300px"
+          class="nx-search-wrapper"
+          variant="plain"
           color="#1565C0"
-          label="搜索"
+          placeholder="搜索"
           append-inner-icon="mdi-magnify"
           single-line
           hide-details
@@ -102,9 +101,39 @@ const search = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .logo {
   width: 24px;
   height: 24px;
+}
+
+.nx-title-wrapper {
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+  }
+}
+
+.nx-search-wrapper {
+  @media screen and (min-width: 600px) {
+    flex-grow: 0;
+    width: 200px;
+    margin-left: 12px;
+  }
+
+  flex-grow: 1;
+  margin-right: 12px;
+  padding: 2px 12px 2px 18px;
+  border-radius: 20px;
+  background-color: #eee;
+}
+
+:deep(.v-field__input) {
+  padding-top: 0;
+}
+
+:deep(.v-field__append-inner) {
+  padding-top: 0;
+  display: flex;
+  align-items: center;
 }
 </style>
