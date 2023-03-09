@@ -101,8 +101,10 @@ export const useStore = defineStore('store', {
       });
     },
 
-    async playerInfo(pid: string) {
-      this.loading = true;
+    async playerInfo(pid: string, loading = true) {
+      if (loading) {
+        this.loading = true;
+      }
 
       const res: Player = await $fetch(`/api/player?pid=${pid}`);
 

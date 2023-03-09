@@ -23,8 +23,10 @@
         <v-btn
           v-for="i in item.set"
           variant="tonal"
-          :color="current === i && src === index ? '#FF9800' : '#2196F3'"
-          :href="`/player/${vid}-${index}-${i}`"
+          :color="
+            current === `${i}` && src === `${index}` ? '#FF9800' : '#2196F3'
+          "
+          @click="() => toPlayer(index, i)"
         >
           {{ padZero(i) }}
         </v-btn>
@@ -34,17 +36,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from '#imports';
+import { ref, useRouter } from '#imports';
 import { padZero } from '@utils';
 
 const props = defineProps<{
   playList: PlayList[];
   vid: string;
-  current?: number;
-  src?: number;
+  current?: string;
+  src?: string;
 }>();
 
-const tab = ref(props.src ?? 0);
+const $router = useRouter();
+
+const tab = ref(Number(props.src) ?? 0);
+
+const toPlayer = (src: number, vol: number) => {
+  $router.push({
+    path: `/player/${props.vid}`,
+    query: { src, vol },
+  });
+};
 </script>
 
 <style scoped lang="scss">

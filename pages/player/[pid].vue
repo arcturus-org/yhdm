@@ -40,8 +40,8 @@
       <nx-playlist
         :playList="$store.player.video.playList"
         :vid="$store.player.video.id"
-        :current="curVideo"
-        :src="curSrc"
+        :current="$route.query.vol"
+        :src="$route.query.src"
       />
     </div>
 
@@ -63,7 +63,14 @@
 </template>
 
 <script setup lang="ts">
-import { definePageMeta, onMounted, useRoute, ref, nextTick } from '#imports';
+import {
+  definePageMeta,
+  onMounted,
+  useRoute,
+  ref,
+  nextTick,
+  watchEffect,
+} from '#imports';
 import { useStore } from '@stores';
 import { storeToRefs } from 'pinia';
 import Artplayer from 'artplayer';
@@ -100,49 +107,51 @@ const $store = useStore();
 
 const { loading } = storeToRefs($store);
 
-const curVideo = ref(0);
-const curSrc = ref(0);
+const art = ref<Artplayer>();
 
 onMounted(() => {
-  const v = ($route.params.pid as string).split('-');
+  const src = $route.query.src;
+  const vol = $route.query.vol;
+  const pid = `${$route.params.pid}-${src}-${vol}`;
 
-  curSrc.value = Number(v[1]);
-  curVideo.value = Number(v[2]);
-
-  $store.playerInfo($route.params.pid as string).then(() => {
+  $store.playerInfo(pid).then(() => {
     nextTick(() => {
-      new Artplayer(
-        {
-          container: video.value!,
-          url: $store.player.video.url,
-          type: 'm3u8',
-          title: $store.player.video.name,
-          autoMini: true,
-          flip: true,
-          playbackRate: true,
-          screenshot: true,
-          setting: true,
-          pip: true,
-          fullscreen: true,
-          fullscreenWeb: true,
-          customType: {
-            m3u8: playM3u8,
-          },
-          plugins: [
-            artplayerPluginHlsQuality({
-              control: true,
-              setting: true,
-              // @ts-ignore
-              getResolution: (level) => level.height + 'P',
-              auto: 'Auto',
-            }),
-          ],
+      art.value = new Artplayer({
+        container: video.value!,
+        url: $store.player.video.url,
+        type: 'm3u8',
+        title: $store.player.video.name,
+        autoMini: true,
+        flip: true,
+        playbackRate: true,
+        screenshot: true,
+        setting: true,
+        pip: true,
+        fullscreen: true,
+        fullscreenWeb: true,
+        customType: {
+          m3u8: playM3u8,
         },
-        function onReady() {
-          log(this);
-          this.play();
-        }
-      );
+        plugins: [
+          artplayerPluginHlsQuality({
+            control: true,
+            setting: true,
+            // @ts-ignore
+            getResolution: (level) => level.height + 'P',
+            auto: 'Auto',
+          }),
+        ],
+      });
+    });
+
+    watchEffect(() => {
+      const src = $route.query.src;
+      const vol = $route.query.vol;
+      const pid = `${$route.params.pid}-${src}-${vol}`;
+
+      $store.playerInfo(pid, false).then(() => {
+        art.value!.switchUrl($store.player.video.url);
+      });
     });
   });
 });
