@@ -39,7 +39,7 @@ describe('video data', () => {
         ratewords: '推荐',
       },
       status: '更新至251话',
-      updateTime: '2023-03-18T09:25:16.000Z',
+      updateTime: '2023-03-18 17:25:16',
       cover: 'http://sakura.xonlines.com/FileUpload/20181211123151670.jpg',
       actors: ['未知'],
       directors: ['未知'],
