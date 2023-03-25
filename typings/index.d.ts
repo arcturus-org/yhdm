@@ -191,7 +191,7 @@ interface VideoInfo {
   /**
    * 视频更新时间
    */
-  updateTime?: String;
+  updateTime?: string;
 
   /**
    * 视频封面
