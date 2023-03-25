@@ -19,8 +19,8 @@ describe('player data', () => {
     });
 
     expect(res.video).toEqual<PlayerVideoInfo>({
-      url: 'https://new.qoqkkhy.com/20230120/nGPGcifM/index.m3u8',
-      nextUrl: 'https://new.qoqkkhy.com/20230120/gmDsSH7Z/index.m3u8',
+      url: 'https://new.qoqkkhy.com/20230107/tACZsdqB/index.m3u8',
+      nextUrl: 'https://new.qoqkkhy.com/20230120/nGPGcifM/index.m3u8',
       name: 'Love Live！虹咲学园学园偶像同好会四格漫',
       year: '2023',
       updateTime: '2023-03-25更新',
