@@ -2,6 +2,17 @@ import { load } from 'cheerio';
 import { trim } from '@utils/string';
 import { parseCard, parseCurrentUrl, parseNextUrl, parsePlayList, parseUpdateTime } from '../utils';
 
+export const onlyUrlResolver = (res: string) => {
+  const $ = load(res);
+
+  const url = $('.embed-responsive').text();
+
+  return {
+    url: parseCurrentUrl(url),
+    nextUrl: parseNextUrl(url),
+  };
+};
+
 export const playerResolver = (res: string): PlayerRes => {
   const $ = load(res);
 

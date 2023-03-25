@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { playerResolver } from '@server/resolver/player';
+import { onlyUrlResolver, playerResolver } from '@server/resolver/player';
 import { resolve } from 'path';
 import fs from 'fs';
 
 describe('player data', () => {
   it('should return PlayerRes', () => {
     const html = fs.readFileSync(resolve(__dirname, './index.html'), 'utf8');
-    const res = playerResolver(html);
+    let res: any = playerResolver(html);
 
     expect(res.like[0]).toEqual<CList>({
       actors: ['内详'],
@@ -44,6 +44,13 @@ describe('player data', () => {
       ],
       like: 157,
       negative: 604,
+    });
+
+    res = onlyUrlResolver(html);
+
+    expect(res).toEqual({
+      url: 'https://new.qoqkkhy.com/20230107/tACZsdqB/index.m3u8',
+      nextUrl: 'https://new.qoqkkhy.com/20230120/nGPGcifM/index.m3u8',
     });
   });
 });
