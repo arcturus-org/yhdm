@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import { trim } from '@utils/string';
 import { parseActors, parseCard, parseDirector, parseList, parsePlayList, parseRateWords } from '../utils';
-import { typeToRoute } from '@utils';
+import { typeToRoute } from '../utils';
 
 export const infoResolver = (res: string): ViewRes => {
   const $ = load(res);

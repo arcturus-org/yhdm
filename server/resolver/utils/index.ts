@@ -1,5 +1,4 @@
 import { Element, CheerioAPI, Cheerio } from 'cheerio';
-import { levelColor } from '@utils';
 
 export const parseVideoId = (url: string): string => {
   const re = /\/view\/(\d+)\.html/;
@@ -142,4 +141,32 @@ export const parseBrief = (s: string): string => {
   }
 
   return '暂无';
+};
+
+export const levelColor = (level: number) => {
+  switch (level) {
+    case 0:
+      return '#dd2c00';
+    case 1:
+      return '#ff6d00';
+    case 2:
+      return '#ffab00';
+    default:
+      return '#03dac6';
+  }
+};
+
+export const typeToRoute = function (t: string) {
+  switch (t) {
+    case '日本动漫':
+      return 'japanese';
+    case '国产动漫':
+      return 'chinese';
+    case '美国动漫':
+      return 'american';
+    case '动漫电影':
+      return 'movies';
+    default:
+      return 'home';
+  }
 };
