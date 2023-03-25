@@ -1,19 +1,21 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import { resolve } from 'path';
 
+export const alias: Record<string, string> = {
+  '@': resolve(__dirname, './'),
+  '@stores': resolve(__dirname, './stores'),
+  '@utils': resolve(__dirname, './utils'),
+  '@server': resolve(__dirname, './server'),
+  '@components': resolve(__dirname, './components'),
+};
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: true,
   },
-  alias: {
-    '@': resolve(__dirname, './'),
-    '@stores': resolve(__dirname, './stores'),
-    '@utils': resolve(__dirname, './utils'),
-    '@server': resolve(__dirname, './server'),
-    '@components': resolve(__dirname, './components'),
-  },
+  alias,
   runtimeConfig: {
     public: {
       name: '樱花动漫',
