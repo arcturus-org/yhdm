@@ -97,48 +97,48 @@ interface HomeRes {
     /**
      * 最新日本动漫
      */
-    l: CList[];
+    latest: CList[];
 
     /**
      * 最热日本动漫
      */
-    h: HList[];
+    hot: HList[];
   };
 
   chinese: {
     /**
      * 最新国产动漫
      */
-    l: CList[];
+    latest: CList[];
 
     /**
      * 最热国产动漫
      */
-    h: HList[];
+    hot: HList[];
   };
 
   american: {
     /**
      * 最新美国动漫
      */
-    l: CList[];
+    latest: CList[];
 
     /**
      * 最热美国动漫
      */
-    h: HList[];
+    hot: HList[];
   };
 
   movies: {
     /**
      * 最新动漫电影
      */
-    l: CList[];
+    latest: CList[];
 
     /**
      * 最热动漫电影
      */
-    h: HList[];
+    hot: HList[];
   };
 }
 
@@ -191,7 +191,7 @@ interface VideoInfo {
   /**
    * 视频更新时间
    */
-  updateTime?: Date;
+  updateTime?: String;
 
   /**
    * 视频封面
@@ -345,22 +345,23 @@ interface PlayerVideoInfo {
   negative: number;
 }
 
-interface Player {
+interface PlayerRes {
+  /**
+   * 播放视频信息
+   */
   video: PlayerVideoInfo;
 
+  /**
+   * 猜你喜欢
+   */
   like: CList[];
 }
 
-interface SearchRes {
+interface OnlySearchRes {
   /**
    * 搜索结果
    */
   search: CList[];
-
-  /**
-   * 热榜
-   */
-  hot: VList[];
 
   /**
    * 搜索页数
@@ -370,4 +371,11 @@ interface SearchRes {
     end: number;
     len: number;
   };
+}
+
+interface SearchRes extends OnlySearchRes {
+  /**
+   * 热榜
+   */
+  hot: VList[];
 }
