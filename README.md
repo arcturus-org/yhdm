@@ -1,3 +1,5 @@
+<img src="/public/favicon.svg" width="144" height="144" alt="logo" align="right" />
+
 <div align="center">
 
 <h1>樱花动漫</h1>
