@@ -1,10 +1,5 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    :elevation="0"
-    class="d-sm-none"
-  >
+  <v-navigation-drawer v-model="drawer" temporary :elevation="0" class="d-sm-none">
     <div class="d-flex align-center pa-4">
       <img src="/favicon.svg" alt="logo" class="logo" />
       <div class="mr-4 ml-2">{{ $config.public.name }}</div>
@@ -13,8 +8,8 @@
     <v-list nav density="compact">
       <v-list-item
         active-color="#1565C0"
-        v-for="(item, index) in navigations"
-        :active="current[index]"
+        v-for="item in navigations"
+        :active="current === item.to"
         :key="item.name"
         :href="item.to"
       >
@@ -32,15 +27,11 @@
         <div class="mr-4 ml-2 d-none d-sm-flex">{{ $config.public.name }}</div>
 
         <v-row no-gutters class="d-none d-sm-flex flex-grow-0">
-          <v-col
-            class="mr-1"
-            v-for="(item, index) in navigations"
-            :key="item.name"
-          >
+          <v-col class="mr-1" v-for="(item, index) in navigations" :key="item.name">
             <v-btn
               :href="item.to"
-              :color="current[index] ? '#1565C0' : undefined"
-              :variant="current[index] ? 'tonal' : undefined"
+              :color="current === item.to ? '#1565C0' : undefined"
+              :variant="current === item.to ? 'tonal' : undefined"
             >
               {{ item.name }}
             </v-btn>
@@ -65,24 +56,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useRuntimeConfig, useRoute, useRouter, ref } from '#imports';
-import { log } from '@utils';
+import { useRuntimeConfig, useRoute, useRouter, ref } from '#imports';
+import { log } from '@utils/log';
+
+const props = defineProps<{
+  current: string;
+}>();
+
+log(`cur: ${props.current}`);
 
 const $config = useRuntimeConfig();
 const $route = useRoute();
 const $router = useRouter();
 
 const navigations = [
-  { name: '首页', to: '/' },
-  { name: '日本动漫', to: '/japanese' },
-  { name: '国产动漫', to: '/chinese' },
-  { name: '美国动漫', to: '/american' },
-  { name: '动漫电影', to: '/movies' },
+  {
+    name: '首页',
+    to: '/',
+  },
+  {
+    name: '日本动漫',
+    to: '/japanese',
+  },
+  {
+    name: '国产动漫',
+    to: '/chinese',
+  },
+  {
+    name: '美国动漫',
+    to: '/american',
+  },
+  {
+    name: '动漫电影',
+    to: '/movies',
+  },
 ];
-
-const current = computed(() =>
-  navigations.map((nav) => $route.path === nav.to)
-);
 
 const drawer = ref(false);
 

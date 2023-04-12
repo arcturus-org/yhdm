@@ -1,12 +1,10 @@
 <template>
   <v-app full-height id="inspire">
-    <navbar />
+    <slot name="navbar" />
     <v-main>
       <slot />
     </v-main>
   </v-app>
 </template>
 
-<script setup lang="ts">
-import navbar from '@components/nx-navbar.vue';
-</script>
+<script setup lang="ts"></script>

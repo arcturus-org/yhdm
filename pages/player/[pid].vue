@@ -50,12 +50,7 @@
     <v-divider></v-divider>
 
     <v-row dense class="mt-4">
-      <v-col
-        v-for="item in $store.player.like"
-        :key="item.name"
-        cols="4"
-        md="2"
-      >
+      <v-col v-for="item in $store.player.like" :key="item.name" cols="4" md="2">
         <nx-card :content="item" :height="180"></nx-card>
       </v-col>
     </v-row>
@@ -63,25 +58,13 @@
 </template>
 
 <script setup lang="ts">
-import {
-  definePageMeta,
-  onMounted,
-  useRoute,
-  ref,
-  nextTick,
-  watchEffect,
-} from '#imports';
+import { onMounted, useRoute, ref, nextTick, watchEffect } from '#imports';
 import { useStore } from '@stores';
 import { storeToRefs } from 'pinia';
 import Artplayer from 'artplayer';
 // @ts-ignore
 import Hls from 'hls.js/dist/hls.min';
 import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
-import { log } from '@utils';
-
-definePageMeta({
-  layout: 'detail',
-});
 
 function playM3u8(video: HTMLMediaElement, url: string, art: Artplayer) {
   if (Hls.isSupported()) {

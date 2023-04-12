@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { ref, useRouter } from '#imports';
-import { padZero } from '@utils';
+import { padZero } from '@utils/date';
 
 const props = defineProps<{
   playList: PlayList[];

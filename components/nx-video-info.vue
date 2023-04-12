@@ -1,17 +1,10 @@
 <template>
   <v-row>
-    <v-col cols="12">
-      <v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
-    </v-col>
+    <v-breadcrumbs :items="breadcrumbs" density="compact" style="width: 100%" />
 
-    <v-col cols="12" sm="5" md="3">
+    <v-col cols="12" sm="6" md="3">
       <v-card style="height: 100%">
-        <v-img
-          style="height: 100%"
-          :src="video.cover"
-          alt="anime cover"
-          cover
-        />
+        <v-img style="height: 100%" :src="video.cover" alt="anime cover" cover />
       </v-card>
     </v-col>
 
@@ -35,12 +28,7 @@
 
         <text class="ml-1">评分：</text>
 
-        <v-rating
-          v-model="rating"
-          color="yellow-darken-3"
-          active-color="yellow-darken-3"
-          size="24"
-        ></v-rating>
+        <v-rating v-model="rating" color="yellow-darken-3" active-color="yellow-darken-3" size="24"></v-rating>
 
         <text class="mx-2 score">{{ video.rating.score }}</text>
 
@@ -64,13 +52,7 @@
 
         <text class="ml-1 mr-3">主演：</text>
 
-        <v-chip
-          color="#2196F3"
-          density="comfortable"
-          v-for="item in video.actors"
-          :key="item"
-          class="mr-2 my-1"
-        >
+        <v-chip color="#2196F3" density="comfortable" v-for="item in video.actors" :key="item" class="mr-2 my-1">
           {{ item }}
         </v-chip>
       </div>
@@ -80,13 +62,7 @@
 
         <text class="ml-1 mr-3">导演：</text>
 
-        <v-chip
-          color="#FF9800"
-          density="comfortable"
-          v-for="item in video.directors"
-          :key="item"
-          class="mr-2 my-1"
-        >
+        <v-chip color="#FF9800" density="comfortable" v-for="item in video.directors" :key="item" class="mr-2 my-1">
           {{ item }}
         </v-chip>
       </div>
@@ -108,7 +84,7 @@
 
 <script setup lang="ts">
 import { computed } from '#imports';
-import { dateToString } from '@utils';
+import { dateToString } from '@utils/date';
 
 const props = defineProps<{
   video: VideoInfo;

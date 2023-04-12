@@ -6,20 +6,20 @@ export const useStore = defineStore('store', {
       home: {
         week: [],
         chinese: {
-          l: [],
-          h: [],
+          latest: [],
+          hot: [],
         },
         american: {
-          l: [],
-          h: [],
+          latest: [],
+          hot: [],
         },
         japanese: {
-          l: [],
-          h: [],
+          latest: [],
+          hot: [],
         },
         movies: {
-          l: [],
-          h: [],
+          latest: [],
+          hot: [],
         },
       },
       loading: true,
@@ -102,16 +102,16 @@ export const useStore = defineStore('store', {
     },
 
     async playerInfo(pid: string, loading = true) {
-      if (loading) {
-        this.loading = true;
-      }
+      // if (loading) {
+      //   this.loading = true;
+      // }
 
-      const res: Player = await $fetch(`/api/player?pid=${pid}`);
+      // const res: PlayerRes = await $fetch(`/api/player?pid=${pid}`);
 
-      this.$patch({
-        player: res,
-        loading: false,
-      });
+      // this.$patch({
+      //   player: res,
+      //   loading: false,
+      // });
     },
 
     async searchInfo(key: string, page = 1, loading = true) {

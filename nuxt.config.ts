@@ -22,6 +22,7 @@ export default defineNuxtConfig({
       api: 'http://www.dm88.me',
     },
   },
+  ssr: true,
   modules: ['@pinia/nuxt', '@vueuse/nuxt'],
   build: {
     transpile: ['vuetify'],
@@ -32,7 +33,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'zh-cmn-Hans',
       },
-      title: '樱花动漫',
+      title: '樱花动漫-专注动漫的门户网站',
       meta: [
         {
           name: 'keywords',
@@ -40,8 +41,7 @@ export default defineNuxtConfig({
         },
         {
           name: 'description',
-          content:
-            '上万集高清晰画质的在线动漫, 观看免费、无须注册、高速播放、更新及时',
+          content: '上万集高清晰画质的在线动漫, 观看免费、无须注册、高速播放、更新及时',
         },
       ],
       link: [
@@ -53,9 +53,5 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: [
-    '~/assets/css/global.scss',
-    'vuetify/lib/styles/main.sass',
-    '@mdi/font/css/materialdesignicons.min.css',
-  ],
+  css: ['~/assets/css/global.scss', 'vuetify/lib/styles/main.sass', '@mdi/font/css/materialdesignicons.min.css'],
 });

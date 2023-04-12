@@ -10,7 +10,7 @@ export const parseList = ($: CheerioAPI, root: Cheerio<Element>): VList[] => {
   const res: VList[] = [];
 
   for (let i = 0; i < root.length; i++) {
-    const el = $(root[0]);
+    const el = $(root[i]);
 
     res.push({
       level: i + 1,

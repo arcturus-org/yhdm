@@ -7,7 +7,7 @@
       </v-row>
 
       <v-row dense class="flex-grow-1">
-        <v-col v-for="item in l" :key="item.name" cols="4" md="2">
+        <v-col v-for="item in video.latest" :key="item.name" cols="4" md="2">
           <nx-card :content="item"></nx-card>
         </v-col>
       </v-row>
@@ -20,28 +20,18 @@
       </v-row>
 
       <v-list class="d-flex flex-column flex-wrap" density="compact" nav>
-        <nx-list-item v-for="(item, index) in h" :key="index" :content="item" />
+        <nx-list-item v-for="(item, index) in video.hot" :key="index" :content="item" />
       </v-list>
     </v-col>
   </v-row>
 </template>
 
 <script setup lang="ts">
-import { computed } from '#imports';
-import { useStore } from '@stores';
-
-const $store = useStore();
-
-const props = defineProps<{
-  type: vType;
+defineProps<{
+  video: {
+    latest: CList[];
+    hot: HList[];
+  };
   title: string;
 }>();
-
-const l = computed(() => {
-  return $store.home[props.type].l;
-});
-
-const h = computed(() => {
-  return $store.home[props.type].h;
-});
 </script>
