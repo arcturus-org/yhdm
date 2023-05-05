@@ -23,7 +23,7 @@ defineProps<{ content: VList }>();
 
 <style lang="scss">
 .list-item {
-  min-height: 36px !important;
+  min-height: 34px !important;
 
   .rank {
     margin: 0;

@@ -41,7 +41,7 @@ const tab = ref((new Date().getDay() + 6) % 7);
 
 @media screen and (min-width: 600px) {
   .week-container {
-    height: 240px;
+    height: 232px;
 
     .week-list {
       height: inherit;
