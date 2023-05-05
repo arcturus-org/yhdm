@@ -23,8 +23,10 @@
 
     <v-toolbar-title class="nx-title-wrapper">
       <div class="d-flex align-center justify-start">
-        <img src="/favicon.svg" alt="logo" class="logo d-none d-sm-flex" />
-        <div class="mr-4 ml-2 d-none d-sm-flex">{{ $config.public.name }}</div>
+        <a class="d-flex align-center text-decoration-none" href="/">
+          <img src="/favicon.svg" alt="logo" class="logo d-none d-sm-flex" />
+          <div class="mr-4 ml-2 d-none d-sm-flex">{{ $config.public.name }}</div>
+        </a>
 
         <v-row no-gutters class="d-none d-md-flex flex-grow-0">
           <v-col class="mr-1" v-for="(item, index) in navigations" :key="item.name">
