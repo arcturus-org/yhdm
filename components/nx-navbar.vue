@@ -29,7 +29,7 @@
         </a>
 
         <v-row no-gutters class="d-none d-md-flex flex-grow-0">
-          <v-col class="mr-1" v-for="(item, index) in navigations" :key="item.name">
+          <v-col class="mr-1" v-for="item in navigations" :key="item.name">
             <v-btn
               :href="item.to"
               :color="current === item.to ? '#1565C0' : undefined"
@@ -64,7 +64,7 @@
 import { useRuntimeConfig, useRoute, useRouter, ref } from '#imports';
 import { log } from '@utils/log';
 
-const props = defineProps<{ current: string }>();
+const props = defineProps<{ current?: string }>();
 
 log(`current-route: ${props.current}`);
 
