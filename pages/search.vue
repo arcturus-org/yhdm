@@ -1,27 +1,25 @@
 <template>
-  <div v-if="loading" class="loading">
-    <v-progress-circular indeterminate color="#1E88E5" />
-  </div>
+  <Head>
+    <Title>{{ $route.query.key }}の搜索结果</Title>
+  </Head>
 
-  <div v-else class="px-12 pa-4">
+  <nx-navbar current="/search" />
+
+  <div class="px-12 pa-4">
     <div>
-      "<span style="color: red">{{ $route.query.key }}</span
-      >" 的搜索结果:
+      &quot;
+      <span style="color: red">{{ $route.query.key }}</span>
+      &quot; 的搜索结果:
     </div>
 
     <v-row>
       <v-col cols="12" sm="8" md="9">
-        <!-- search result -->
-        <nx-search-card
-          v-for="item in $store.search.search"
-          :key="item.id"
-          :video="item"
-        />
+        <nx-search-card v-for="item in data!.search" :key="item.id" :video="item" />
 
         <v-pagination
-          :start="$store.search.page.start"
-          :end="$store.search.page.end"
-          :length="$store.search.page.len"
+          :start="data!.page.start"
+          :end="data!.page.end"
+          :length="data!.page.len"
           v-model="page"
           density="compact"
           @update:modelValue="update"
@@ -35,11 +33,7 @@
         </v-row>
 
         <v-list class="d-flex flex-column flex-wrap" density="compact" nav>
-          <nx-list-item
-            v-for="(item, index) in $store.search.hot"
-            :key="index"
-            :content="item"
-          />
+          <nx-list-item v-for="(item, index) in data!.hot" :key="index" :content="item" />
         </v-list>
       </v-col>
     </v-row>
@@ -47,35 +41,25 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '@stores';
-import { storeToRefs } from 'pinia';
-import {
-  onMounted,
-  useRoute,
-  useRouter,
-  ref,
-  watchEffect,
-  toRef,
-} from '#imports';
+import { useRoute, useRouter, ref, useFetch, watch } from '#imports';
 
-const $store = useStore();
 const $route = useRoute();
 const $router = useRouter();
 
-const { loading } = storeToRefs($store);
-
 const page = ref(Number($route.query.page ?? 1));
 
-onMounted(() => {
-  $store.searchInfo($route.query.key as string);
+const { data } = await useFetch<SearchRes>(`/api/search?key=${$route.query.key}&page=${page.value}`);
 
-  watchEffect(() =>
-    $store.searchInfo(($route.query.key as string) ?? '', page.value, false)
-  );
-});
+watch(
+  () => $route.query.key,
+  async () => {
+    const res = await $fetch<SearchRes>(`/api/search/only?key=${$route.query.key}&page=${page.value}`);
+    data.value!.page = res.page;
+    data.value!.search = res.search;
+  }
+);
 
 function update(p: number) {
-  console.log(11);
   $router.push({
     path: '/search',
     query: {
