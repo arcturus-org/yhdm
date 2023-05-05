@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     public: {
       name: '樱花动漫',
       api: 'http://www.dm88.me',
+      github: 'https://github.com/arcturus-org/yhdm',
     },
   },
   ssr: true,

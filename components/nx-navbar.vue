@@ -50,6 +50,9 @@
           v-model="searchText"
           @keydown.enter.prevent="search"
         />
+
+        <v-spacer />
+        <v-btn icon="mdi-github" :href="$config.public.github" target="_blank"></v-btn>
       </div>
     </v-toolbar-title>
   </v-app-bar>
@@ -59,9 +62,7 @@
 import { useRuntimeConfig, useRoute, useRouter, ref } from '#imports';
 import { log } from '@utils/log';
 
-const props = defineProps<{
-  current: string;
-}>();
+const props = defineProps<{ current: string }>();
 
 log(`current-route: ${props.current}`);
 
