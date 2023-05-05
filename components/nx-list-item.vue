@@ -1,7 +1,7 @@
 <template>
-  <v-list-item :value="content" nav :href="`/view/${content.id}`">
+  <v-list-item class="list-item" :value="content" nav :href="`/view/${content.id}`">
     <template v-slot:prepend>
-      <v-chip class="ma-2" size="x-small" :color="content.color">
+      <v-chip class="rank" :color="content.color">
         {{ content.level }}
       </v-chip>
     </template>
@@ -18,7 +18,21 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  content: VList;
-}>();
+defineProps<{ content: VList }>();
 </script>
+
+<style lang="scss">
+.list-item {
+  min-height: 36px !important;
+
+  .rank {
+    margin: 0;
+    margin-right: 4px;
+    height: 20px !important;
+    width: 20px !important;
+    padding: 0 !important;
+    justify-content: center;
+    font-size: 10px !important;
+  }
+}
+</style>
