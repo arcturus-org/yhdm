@@ -63,7 +63,7 @@ const props = defineProps<{
   current: string;
 }>();
 
-log(`cur: ${props.current}`);
+log(`current-route: ${props.current}`);
 
 const $config = useRuntimeConfig();
 const $route = useRoute();
@@ -98,7 +98,7 @@ const searchText = ref($route.query.key as string);
 
 const search = () => {
   if (searchText.value) {
-    log(`您搜索了 ${searchText.value}`);
+    log(`search key: ${searchText.value}`);
 
     $router.push({
       path: '/search',
