@@ -1,12 +1,12 @@
 <template>
-  <v-row no-gutters class="mt-4 ml-2">
+  <v-row class="mt-2">
     <v-col cols="12" sm="8" md="9" class="d-flex flex-column">
-      <v-row no-gutters class="mb-4 flex-grow-0">
+      <v-row no-gutters class="mb-2 flex-grow-0">
         <div class="text-h5 mr-4">最新{{ title }}</div>
         <v-btn flat>更多</v-btn>
       </v-row>
 
-      <v-row dense class="flex-grow-1">
+      <v-row dense class="flex-grow-0">
         <v-col v-for="item in video.latest" :key="item.name" cols="4" md="2">
           <nx-card :content="item"></nx-card>
         </v-col>
