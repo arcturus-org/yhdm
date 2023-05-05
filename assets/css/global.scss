@@ -21,3 +21,11 @@ html {
 .clickable {
   cursor: pointer;
 }
+
+.v-navigation-drawer__scrim {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
