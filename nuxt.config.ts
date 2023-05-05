@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  modules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  modules: ['@vueuse/nuxt'],
   build: {
     transpile: ['vuetify'],
   },
