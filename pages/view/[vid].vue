@@ -14,7 +14,7 @@
 
       <v-row dense class="mt-4">
         <v-col v-for="item in data!.like" :key="item.name" cols="4" md="2">
-          <nx-card :content="item" :height="180"></nx-card>
+          <nx-card :content="item"></nx-card>
         </v-col>
       </v-row>
     </v-col>
