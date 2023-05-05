@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" temporary :elevation="0" class="d-sm-none">
+  <v-navigation-drawer v-model="drawer" temporary :elevation="0" class="d-md-none">
     <div class="d-flex align-center pa-4">
       <img src="/favicon.svg" alt="logo" class="logo" />
       <div class="mr-4 ml-2">{{ $config.public.name }}</div>
@@ -19,14 +19,14 @@
   </v-navigation-drawer>
 
   <v-app-bar :elevation="0" class="border-b w-100" density="comfortable">
-    <v-app-bar-nav-icon class="d-sm-none" @click="drawer = !drawer" />
+    <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer" />
 
     <v-toolbar-title class="nx-title-wrapper">
       <div class="d-flex align-center justify-start">
         <img src="/favicon.svg" alt="logo" class="logo d-none d-sm-flex" />
         <div class="mr-4 ml-2 d-none d-sm-flex">{{ $config.public.name }}</div>
 
-        <v-row no-gutters class="d-none d-sm-flex flex-grow-0">
+        <v-row no-gutters class="d-none d-md-flex flex-grow-0">
           <v-col class="mr-1" v-for="(item, index) in navigations" :key="item.name">
             <v-btn
               :href="item.to"
@@ -51,8 +51,8 @@
           @keydown.enter.prevent="search"
         />
 
-        <v-spacer />
-        <v-btn icon="mdi-github" :href="$config.public.github" target="_blank"></v-btn>
+        <v-spacer class="d-none d-sm-flex" />
+        <v-btn class="d-none d-sm-flex" icon="mdi-github" :href="$config.public.github" target="_blank"></v-btn>
       </div>
     </v-toolbar-title>
   </v-app-bar>
