@@ -1,5 +1,7 @@
 <template>
-  <Head>
+  <nx-navbar current="/" />
+
+  <!-- <Head>
     <Title>{{ $store.player.video.name }}</Title>
   </Head>
 
@@ -9,7 +11,6 @@
 
   <div v-else class="pb-4 wrapper">
     <div ref="video" :style="{ aspectRatio: '16/9' }">
-      <!-- video player -->
     </div>
 
     <div class="text-h4 my-4">{{ $store.player.video.name }}</div>
@@ -54,90 +55,90 @@
         <nx-card :content="item" :height="180"></nx-card>
       </v-col>
     </v-row>
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts">
-import { onMounted, useRoute, ref, nextTick, watchEffect } from '#imports';
-import { useStore } from '@stores';
-import { storeToRefs } from 'pinia';
-import Artplayer from 'artplayer';
-// @ts-ignore
-import Hls from 'hls.js/dist/hls.min';
-import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
+// import { onMounted, useRoute, ref, nextTick, watchEffect } from '#imports';
+// import { useStore } from '@stores';
+// import { storeToRefs } from 'pinia';
+// import Artplayer from 'artplayer';
+// // @ts-ignore
+// import Hls from 'hls.js/dist/hls.min';
+// import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
 
-function playM3u8(video: HTMLMediaElement, url: string, art: Artplayer) {
-  if (Hls.isSupported()) {
-    const hls = new Hls();
-    hls.loadSource(url);
-    hls.attachMedia(video);
+// function playM3u8(video: HTMLMediaElement, url: string, art: Artplayer) {
+//   if (Hls.isSupported()) {
+//     const hls = new Hls();
+//     hls.loadSource(url);
+//     hls.attachMedia(video);
 
-    // @ts-ignore
-    art.hls = hls;
-    art.once('url', () => hls.destroy());
-    art.once('destroy', () => hls.destroy());
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = url;
-  } else {
-    art.notice.show = 'Unsupported playback format: m3u8';
-  }
-}
+//     // @ts-ignore
+//     art.hls = hls;
+//     art.once('url', () => hls.destroy());
+//     art.once('destroy', () => hls.destroy());
+//   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+//     video.src = url;
+//   } else {
+//     art.notice.show = 'Unsupported playback format: m3u8';
+//   }
+// }
 
-const video = ref<HTMLDivElement>();
+// const video = ref<HTMLDivElement>();
 
-const $route = useRoute();
-const $store = useStore();
+// const $route = useRoute();
+// const $store = useStore();
 
-const { loading } = storeToRefs($store);
+// const { loading } = storeToRefs($store);
 
-const art = ref<Artplayer>();
+// const art = ref<Artplayer>();
 
-onMounted(() => {
-  const src = $route.query.src;
-  const vol = $route.query.vol;
-  const pid = `${$route.params.pid}-${src}-${vol}`;
+// onMounted(() => {
+//   const src = $route.query.src;
+//   const vol = $route.query.vol;
+//   const pid = `${$route.params.pid}-${src}-${vol}`;
 
-  $store.playerInfo(pid).then(() => {
-    nextTick(() => {
-      art.value = new Artplayer({
-        container: video.value!,
-        url: $store.player.video.url,
-        type: 'm3u8',
-        title: $store.player.video.name,
-        autoMini: true,
-        flip: true,
-        playbackRate: true,
-        screenshot: true,
-        setting: true,
-        pip: true,
-        fullscreen: true,
-        fullscreenWeb: true,
-        customType: {
-          m3u8: playM3u8,
-        },
-        plugins: [
-          artplayerPluginHlsQuality({
-            control: true,
-            setting: true,
-            // @ts-ignore
-            getResolution: (level) => level.height + 'P',
-            auto: 'Auto',
-          }),
-        ],
-      });
-    });
+//   $store.playerInfo(pid).then(() => {
+//     nextTick(() => {
+//       art.value = new Artplayer({
+//         container: video.value!,
+//         url: $store.player.video.url,
+//         type: 'm3u8',
+//         title: $store.player.video.name,
+//         autoMini: true,
+//         flip: true,
+//         playbackRate: true,
+//         screenshot: true,
+//         setting: true,
+//         pip: true,
+//         fullscreen: true,
+//         fullscreenWeb: true,
+//         customType: {
+//           m3u8: playM3u8,
+//         },
+//         plugins: [
+//           artplayerPluginHlsQuality({
+//             control: true,
+//             setting: true,
+//             // @ts-ignore
+//             getResolution: (level) => level.height + 'P',
+//             auto: 'Auto',
+//           }),
+//         ],
+//       });
+//     });
 
-    watchEffect(() => {
-      const src = $route.query.src;
-      const vol = $route.query.vol;
-      const pid = `${$route.params.pid}-${src}-${vol}`;
+//     watchEffect(() => {
+//       const src = $route.query.src;
+//       const vol = $route.query.vol;
+//       const pid = `${$route.params.pid}-${src}-${vol}`;
 
-      $store.playerInfo(pid, false).then(() => {
-        art.value!.switchUrl($store.player.video.url);
-      });
-    });
-  });
-});
+//       $store.playerInfo(pid, false).then(() => {
+//         art.value!.switchUrl($store.player.video.url);
+//       });
+//     });
+//   });
+// });
 </script>
 
 <style lang="scss">

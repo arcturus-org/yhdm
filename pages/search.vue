@@ -5,16 +5,20 @@
 
   <nx-navbar current="/search" />
 
-  <div class="px-12 pa-4">
-    <div>
+  <div class="pa-4">
+    <div class="mb-2 ml-2">
       &quot;
       <span style="color: red">{{ $route.query.key }}</span>
       &quot; 的搜索结果:
     </div>
 
-    <v-row>
+    <v-row dense>
       <v-col cols="12" sm="8" md="9">
-        <nx-search-card v-for="item in data!.search" :key="item.id" :video="item" />
+        <div class="mb-4 d-flex flex-wrap">
+          <div v-for="item in data!.search" :key="item.id" class="search-card">
+            <nx-search-card :video="item" />
+          </div>
+        </div>
 
         <v-pagination
           :start="data!.page.start"
@@ -51,7 +55,7 @@ const page = ref(Number($route.query.page ?? 1));
 const { data } = await useFetch<SearchRes>(`/api/search?key=${$route.query.key}&page=${page.value}`);
 
 watch(
-  () => $route.query.key,
+  () => $route.query,
   async () => {
     const res = await $fetch<SearchRes>(`/api/search/only?key=${$route.query.key}&page=${page.value}`);
     data.value!.page = res.page;
@@ -69,3 +73,14 @@ function update(p: number) {
   });
 }
 </script>
+
+<style scoped lang="scss">
+@media screen and (min-width: 600px) {
+  .search-card {
+    width: 20%;
+  }
+}
+.search-card {
+  padding: 4px;
+}
+</style>
