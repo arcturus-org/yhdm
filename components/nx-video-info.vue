@@ -148,12 +148,10 @@ const breadcrumbs = computed(() => {
 }
 
 .image-wrapper {
-  $mh: 300px;
-
-  min-height: $mh;
+  min-height: 500px;
 
   .image {
-    min-height: $mh;
+    min-height: 500px;
     position: relative;
 
     .mask {
@@ -170,6 +168,14 @@ const breadcrumbs = computed(() => {
         rgba(89, 89, 89, 0.3) 80%,
         rgba(20, 20, 20, 0.5) 100%
       );
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    min-height: 300px;
+
+    .image {
+      min-height: 300px;
     }
   }
 }
