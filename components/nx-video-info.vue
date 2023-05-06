@@ -74,6 +74,8 @@
           </v-chip>
         </div>
       </div>
+
+      <nx-share />
     </v-col>
   </v-row>
 
