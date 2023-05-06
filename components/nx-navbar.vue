@@ -66,11 +66,11 @@ import { log } from '@utils/log';
 
 const props = defineProps<{ current?: string }>();
 
-log(`current-route: ${props.current}`);
-
 const $config = useRuntimeConfig();
 const $route = useRoute();
 const $router = useRouter();
+
+log(`current-route: ${$route.path}`);
 
 const navigations = [
   {
