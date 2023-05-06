@@ -1,3 +1,5 @@
+declare module 'hls.js/dist/hls.min';
+
 interface Video {
   /**
    * 视频名称
