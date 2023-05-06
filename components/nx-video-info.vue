@@ -4,13 +4,13 @@
       <v-breadcrumbs class="breadcrumbs" :items="breadcrumbs" density="compact" />
     </v-col>
 
-    <v-col cols="12" sm="6" md="3">
-      <v-card style="height: 100%">
-        <v-img style="height: inherit" :src="video.cover" alt="anime cover" cover />
+    <v-col cols="12" sm="4" md="3">
+      <v-card class="image-wrapper">
+        <v-img class="image" :src="video.cover" alt="anime cover" cover />
       </v-card>
     </v-col>
 
-    <v-col cols="12" sm="6" md="9">
+    <v-col cols="12" sm="8" md="9">
       <div class="text-h6">{{ video.name }}</div>
 
       <div class="my-2">
@@ -140,6 +140,16 @@ const breadcrumbs = computed(() => {
 
   :deep(.v-icon) {
     height: 32px;
+  }
+}
+
+.image-wrapper {
+  $mh: 300px;
+
+  min-height: $mh;
+
+  .image {
+    min-height: $mh;
   }
 }
 </style>
