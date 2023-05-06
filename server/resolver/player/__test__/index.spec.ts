@@ -25,7 +25,10 @@ describe('player data', () => {
       year: '2023',
       updateTime: '2023-03-25更新',
       id: '10165',
-      type: '日本动漫',
+      type: {
+        c: '日本动漫',
+        r: 'japanese',
+      },
       region: '日本',
       score: '9.3分',
       playList: [
