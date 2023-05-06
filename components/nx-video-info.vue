@@ -14,15 +14,15 @@
       <div class="text-h6">{{ video.name }}</div>
 
       <div class="my-2">
-        <v-chip :href="typeRoute" class="mr-2" color="green">
+        <v-chip density="comfortable" :href="typeRoute" class="mr-2" color="green">
           {{ video.type.c }}
         </v-chip>
 
-        <v-chip :href="typeRoute" class="mr-2" color="green">
+        <v-chip density="comfortable" :href="typeRoute" class="mr-2" color="green">
           {{ video.region }}
         </v-chip>
 
-        <v-chip color="green">{{ video.year }}</v-chip>
+        <v-chip density="comfortable" color="green">{{ video.year }}</v-chip>
       </div>
 
       <div class="my-2 d-flex align-center">
@@ -49,24 +49,30 @@
         <text class="ml-1">时间： {{ dateToString(video.updateTime!) }} </text>
       </div>
 
-      <div class="my-2 d-flex align-center flex-wrap">
-        <v-icon icon="mdi-account-multiple-outline" color="#2196F3"></v-icon>
+      <div class="my-2 d-flex">
+        <div class="d-flex align-start flex-shrink-0 roles-wrapper">
+          <v-icon icon="mdi-account-multiple-outline" color="#2196F3"></v-icon>
+          <text class="ml-1">主演：</text>
+        </div>
 
-        <text class="ml-1">主演：</text>
-
-        <v-chip color="#2196F3" density="comfortable" v-for="item in video.actors" :key="item" class="mr-2 my-1">
-          {{ item }}
-        </v-chip>
+        <div class="d-flex flex-wrap">
+          <v-chip color="#2196F3" density="comfortable" v-for="item in video.actors" :key="item" class="mr-2 my-1">
+            {{ item }}
+          </v-chip>
+        </div>
       </div>
 
-      <div class="my-2 d-flex align-center flex-wrap">
-        <v-icon icon="mdi-account-edit " color="#FF9800"></v-icon>
+      <div class="my-2 d-flex">
+        <div class="d-flex align-start flex-shrink-0 roles-wrapper">
+          <v-icon icon="mdi-account-edit " color="#FF9800"></v-icon>
+          <text class="ml-1">导演：</text>
+        </div>
 
-        <text class="ml-1">导演：</text>
-
-        <v-chip color="#FF9800" density="comfortable" v-for="item in video.directors" :key="item" class="mr-2 my-1">
-          {{ item }}
-        </v-chip>
+        <div class="d-flex flex-wrap">
+          <v-chip color="#FF9800" density="comfortable" v-for="item in video.directors" :key="item" class="mr-2 my-1">
+            {{ item }}
+          </v-chip>
+        </div>
       </div>
     </v-col>
   </v-row>
@@ -125,6 +131,15 @@ const breadcrumbs = computed(() => {
 
   .breadcrumbs {
     font-size: 14px;
+  }
+}
+
+.roles-wrapper {
+  width: 80px;
+  line-height: 32px;
+
+  :deep(.v-icon) {
+    height: 32px;
   }
 }
 </style>
