@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, useRouter } from '#imports';
+import { onMounted, ref, useRouter } from '#imports';
 import { padZero } from '@utils/date';
 
 const props = defineProps<{
@@ -38,7 +38,11 @@ const props = defineProps<{
 
 const $router = useRouter();
 
-const tab = ref(Number(props.src) ?? 0);
+const tab = ref(0);
+
+onMounted(() => {
+  tab.value = Number(props.src);
+});
 
 const toPlayer = (src: number, vol: number) => {
   $router.push({
