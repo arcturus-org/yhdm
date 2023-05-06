@@ -1,152 +1,147 @@
 <template>
-  <nx-navbar current="/" />
+  <nx-navbar :current="`/${data!.video.type.r}`" />
 
-  <!-- <Head>
-    <Title>{{ $store.player.video.name }}</Title>
+  <Head>
+    <Title>{{ data!.video.name }}</Title>
   </Head>
 
-  <div v-if="loading" class="loading">
-    <v-progress-circular indeterminate color="#1E88E5" />
-  </div>
+  <div class="wrapper">
+    <v-row class="mt-4">
+      <v-col md="8" class="video-wrapper">
+        <div ref="video" :style="{ aspectRatio: '16/9' }"></div>
 
-  <div v-else class="pb-4 wrapper">
-    <div ref="video" :style="{ aspectRatio: '16/9' }">
-    </div>
+        <div class="text-h6 my-2">{{ data!.video.name }}</div>
 
-    <div class="text-h4 my-4">{{ $store.player.video.name }}</div>
+        <div class="d-flex align-center flex-wrap">
+          <v-chip class="mr-2 my-1" color="blue">
+            {{ data!.video.updateTime }}
+          </v-chip>
 
-    <div class="d-flex align-center flex-wrap">
-      <v-chip class="mr-2 my-1" color="blue">
-        {{ $store.player.video.updateTime }}
-      </v-chip>
+          <v-chip class="mr-2 my-1" color="red">
+            {{ data!.video.score }}
+          </v-chip>
 
-      <v-chip class="mr-2 my-1" color="red">
-        {{ $store.player.video.score }}
-      </v-chip>
+          <v-chip class="mr-2 my-1" color="green">
+            {{ data!.video.type.c }}
+          </v-chip>
 
-      <v-chip class="mr-2 my-1" color="green">
-        {{ $store.player.video.type }}
-      </v-chip>
+          <v-chip class="mr-2 my-1" color="green">
+            {{ data!.video.region }}
+          </v-chip>
 
-      <v-chip class="mr-2 my-1" color="green">
-        {{ $store.player.video.region }}
-      </v-chip>
-
-      <v-chip class="mr-2 my-1" color="pink">
-        {{ $store.player.video.year }}
-      </v-chip>
-    </div>
-
-    <div class="my-8">
-      <nx-playlist
-        :playList="$store.player.video.playList"
-        :vid="$store.player.video.id"
-        :current="$route.query.vol"
-        :src="$route.query.src"
-      />
-    </div>
-
-    <div class="text-h4 my-4">猜你喜欢</div>
-
-    <v-divider></v-divider>
-
-    <v-row dense class="mt-4">
-      <v-col v-for="item in $store.player.like" :key="item.name" cols="4" md="2">
-        <nx-card :content="item" :height="180"></nx-card>
+          <v-chip class="mr-2 my-1" color="pink">
+            {{ data!.video.year }}
+          </v-chip>
+        </div>
+      </v-col>
+      <v-col md="4">
+        <nx-playlist
+          :playList="data!.video.playList"
+          :vid="data!.video.id"
+          :current="$route.query.vol"
+          :src="$route.query.src"
+          height="360px"
+          :col="3"
+        />
       </v-col>
     </v-row>
-  </div> -->
+
+    <div class="text-h6 my-2">猜你喜欢</div>
+
+    <v-row dense>
+      <v-col v-for="item in data!.like" :key="item.name" cols="4" md="2">
+        <nx-card :content="item" />
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script setup lang="ts">
-// import { onMounted, useRoute, ref, nextTick, watchEffect } from '#imports';
-// import { useStore } from '@stores';
-// import { storeToRefs } from 'pinia';
-// import Artplayer from 'artplayer';
-// // @ts-ignore
-// import Hls from 'hls.js/dist/hls.min';
-// import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
+import { useFetch, useRoute, ref, watch, onMounted } from '#imports';
 
-// function playM3u8(video: HTMLMediaElement, url: string, art: Artplayer) {
-//   if (Hls.isSupported()) {
-//     const hls = new Hls();
-//     hls.loadSource(url);
-//     hls.attachMedia(video);
+import Artplayer from 'artplayer';
+import { type Option } from 'artplayer/types/option';
 
-//     // @ts-ignore
-//     art.hls = hls;
-//     art.once('url', () => hls.destroy());
-//     art.once('destroy', () => hls.destroy());
-//   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-//     video.src = url;
-//   } else {
-//     art.notice.show = 'Unsupported playback format: m3u8';
-//   }
-// }
+import Hls from 'hls.js/dist/hls.min';
+import artplayerPluginHlsQuality from 'artplayer-plugin-hls-quality';
 
-// const video = ref<HTMLDivElement>();
+const video = ref<HTMLDivElement>();
 
-// const $route = useRoute();
-// const $store = useStore();
+const art = ref<Artplayer>();
 
-// const { loading } = storeToRefs($store);
+const $route = useRoute();
 
-// const art = ref<Artplayer>();
+const { data } = await useFetch<PlayerRes>(
+  `/api/player?vid=${$route.params.pid}&src=${$route.query.src}&episode=${$route.query.vol}`
+);
 
-// onMounted(() => {
-//   const src = $route.query.src;
-//   const vol = $route.query.vol;
-//   const pid = `${$route.params.pid}-${src}-${vol}`;
+function playM3u8(video: HTMLMediaElement, url: string, art: Artplayer) {
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
 
-//   $store.playerInfo(pid).then(() => {
-//     nextTick(() => {
-//       art.value = new Artplayer({
-//         container: video.value!,
-//         url: $store.player.video.url,
-//         type: 'm3u8',
-//         title: $store.player.video.name,
-//         autoMini: true,
-//         flip: true,
-//         playbackRate: true,
-//         screenshot: true,
-//         setting: true,
-//         pip: true,
-//         fullscreen: true,
-//         fullscreenWeb: true,
-//         customType: {
-//           m3u8: playM3u8,
-//         },
-//         plugins: [
-//           artplayerPluginHlsQuality({
-//             control: true,
-//             setting: true,
-//             // @ts-ignore
-//             getResolution: (level) => level.height + 'P',
-//             auto: 'Auto',
-//           }),
-//         ],
-//       });
-//     });
+    // @ts-ignore
+    art.hls = hls;
+    art.once('destroy', () => hls.destroy());
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = url;
+  } else {
+    art.notice.show = 'Unsupported playback format: m3u8';
+  }
+}
 
-//     watchEffect(() => {
-//       const src = $route.query.src;
-//       const vol = $route.query.vol;
-//       const pid = `${$route.params.pid}-${src}-${vol}`;
+onMounted(() => {
+  const options: Option = {
+    container: video.value!,
+    url: data.value!.video.url,
+    type: 'm3u8',
+    autoMini: true,
+    flip: true,
+    playbackRate: true,
+    screenshot: true,
+    setting: true,
+    pip: true,
+    fullscreen: true,
+    fullscreenWeb: true,
+    customType: { m3u8: playM3u8 },
+    plugins: [
+      artplayerPluginHlsQuality({
+        getResolution: (level) => level.height + 'P',
+        control: true,
+        setting: true,
+        auto: 'Auto',
+      }),
+    ],
+  };
 
-//       $store.playerInfo(pid, false).then(() => {
-//         art.value!.switchUrl($store.player.video.url);
-//       });
-//     });
-//   });
-// });
+  art.value = new Artplayer(options);
+});
+
+watch(
+  () => $route.query,
+  async () => {
+    const src = $route.query.src;
+    const vol = $route.query.vol;
+    const pid = `${$route.params.pid}-${src}-${vol}`;
+
+    const res = await $fetch<PlayerRes>(`/api/player?vid=${pid}&src=${src}&episode=${vol}`);
+
+    art.value!.switchUrl(res.video.url);
+  }
+);
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .wrapper {
-  padding: 12px 24px;
+  padding: 0 20px 20px;
 
-  @media screen and (min-width: 800px) {
-    padding: 0 150px;
+  @media screen and (min-width: 600px) {
+    padding: 0 80px 20px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding: 0 150px 20px;
   }
 }
 </style>
