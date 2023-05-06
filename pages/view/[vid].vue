@@ -4,7 +4,8 @@
   </Head>
 
   <nx-navbar :current="`/${data!.video.type.r}`" />
-  <v-row class="px-12 py-4">
+
+  <v-row class="pa-4">
     <v-col md="9">
       <nx-video-info :video="data!.video"></nx-video-info>
 
