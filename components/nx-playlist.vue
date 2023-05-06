@@ -6,9 +6,9 @@
       </v-tab>
     </v-tabs>
 
-    <v-window v-model="tab" class="mt-2 pa-2">
+    <v-window v-model="tab" class="mt-2 pa-2 playlist" :style="{ height }">
       <v-window-item v-for="(item, index) in playList" :key="item.source" :value="index">
-        <div class="grid">
+        <div class="grid" :style="{ gridTemplateColumns: `repeat(${col ?? 10}, 1fr)` }">
           <v-btn
             v-for="i in item.set"
             variant="tonal"
@@ -32,6 +32,8 @@ const props = defineProps<{
   vid: string;
   current?: string;
   src?: string;
+  height?: string;
+  col?: number;
 }>();
 
 const $router = useRouter();
@@ -55,11 +57,18 @@ const toPlayer = (src: number, vol: number) => {
   .tabs {
     margin-left: 8px;
   }
+
+  .playlist {
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
   gap: 12px;
 }
 </style>
