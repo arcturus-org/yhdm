@@ -9,13 +9,11 @@
     <v-col md="9">
       <nx-video-info :video="data!.video"></nx-video-info>
 
-      <div class="text-h4 my-4">猜你喜欢</div>
+      <div class="text-h6 mb-2">猜你喜欢</div>
 
-      <v-divider></v-divider>
-
-      <v-row dense class="mt-4">
+      <v-row dense>
         <v-col v-for="item in data!.like" :key="item.name" cols="4" md="2">
-          <nx-card :content="item"></nx-card>
+          <nx-card :content="item" />
         </v-col>
       </v-row>
     </v-col>
