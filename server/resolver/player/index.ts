@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
 import { trim } from '@utils/string';
-import { parseCard, parseCurrentUrl, parseNextUrl, parsePlayList, parseUpdateTime } from '../utils';
+import { parseCard, parseCurrentUrl, parseNextUrl, parsePlayList, parseUpdateTime, typeToRoute } from '../utils';
 
 export const onlyUrlResolver = (res: string) => {
   const $ = load(res);
@@ -22,6 +22,7 @@ export const playerResolver = (res: string): PlayerRes => {
 
   const intro = $('.text-muted.margin-0');
   const intro_a = intro.children('a');
+  const type = $(intro_a[0]).text();
 
   const play = $('ul.nav a');
 
@@ -33,7 +34,10 @@ export const playerResolver = (res: string): PlayerRes => {
       year: trim($(intro_a[2]).text()),
       updateTime: parseUpdateTime(intro.text()),
       id: String($('.digg_link').data('id')),
-      type: $(intro_a[0]).text(),
+      type: {
+        c: type,
+        r: typeToRoute(type),
+      },
       region: $(intro_a[1]).text(),
       score: intro.children('span').text(),
       playList: parsePlayList($, play),

@@ -156,6 +156,7 @@ interface VideoInfo {
      */
     r: string;
   };
+
   /**
    * 视频名称
    */
@@ -317,7 +318,16 @@ interface PlayerVideoInfo {
   /**
    * 视频类型
    */
-  type: string;
+  type: {
+    /**
+     * 中文类型
+     */
+    c: string;
+    /**
+     * 路由
+     */
+    r: string;
+  };
 
   /**
    * 视频地区
