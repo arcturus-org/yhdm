@@ -20,8 +20,8 @@
           </div>
         </div>
 
-        <div v-else>
-          <v-img src="/assets/figures/notFound.svg" alt="not found" />
+        <div v-else class="d-flex align-center justify-center not-found-wrapper">
+          <img class="not-found" src="/figures/notFound.svg" alt="not found" />
         </div>
 
         <v-pagination
@@ -87,5 +87,13 @@ function update(p: number) {
 }
 .search-card {
   padding: 4px;
+}
+
+.not-found-wrapper {
+  height: 100%;
+
+  .not-found {
+    width: 240px;
+  }
 }
 </style>
