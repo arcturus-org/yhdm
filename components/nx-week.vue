@@ -20,7 +20,7 @@ import { onMounted, ref } from '#imports';
 defineProps<{ week: WList }>();
 
 const tabs = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-const tab = ref(0);
+const tab = ref(-1);
 
 onMounted(() => {
   tab.value = (new Date().getDay() + 6) % 7;

@@ -38,7 +38,7 @@ const props = defineProps<{
 
 const $router = useRouter();
 
-const tab = ref(0);
+const tab = ref(-1);
 
 onMounted(() => {
   tab.value = Number(props.src ?? 0);
