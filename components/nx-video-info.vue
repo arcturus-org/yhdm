@@ -6,7 +6,9 @@
 
     <v-col cols="12" sm="4" md="3">
       <v-card class="image-wrapper">
-        <v-img class="image" :src="video.cover" alt="anime cover" cover />
+        <v-img class="image" :src="video.cover" alt="anime cover" cover>
+          <div class="mask"></div>
+        </v-img>
       </v-card>
     </v-col>
 
@@ -152,6 +154,23 @@ const breadcrumbs = computed(() => {
 
   .image {
     min-height: $mh;
+    position: relative;
+
+    .mask {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(20, 20, 20, 0.5) 0,
+        rgba(89, 89, 89, 0.3) 20%,
+        rgba(191, 191, 191, 0.2) 50%,
+        rgba(89, 89, 89, 0.3) 80%,
+        rgba(20, 20, 20, 0.5) 100%
+      );
+    }
   }
 }
 </style>
