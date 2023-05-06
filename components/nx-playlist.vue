@@ -59,7 +59,7 @@ const toPlayer = (src: number, vol: number) => {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
   gap: 12px;
 }
 </style>
