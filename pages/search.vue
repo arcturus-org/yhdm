@@ -21,6 +21,7 @@
         </div>
 
         <v-pagination
+          v-show="data!.page.start !== 0"
           :start="data!.page.start"
           :end="data!.page.end"
           :length="data!.page.len"
