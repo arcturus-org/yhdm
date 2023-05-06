@@ -14,10 +14,14 @@
 
     <v-row dense>
       <v-col cols="12" sm="8" md="9">
-        <div class="mb-4 d-flex flex-wrap">
+        <div v-if="data!.page.start !== 0" class="mb-4 d-flex flex-wrap">
           <div v-for="item in data!.search" :key="item.id" class="search-card">
             <nx-search-card :video="item" />
           </div>
+        </div>
+
+        <div v-else>
+          <v-img src="/assets/figures/notFound.svg" alt="not found" />
         </div>
 
         <v-pagination
