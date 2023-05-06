@@ -64,7 +64,7 @@
 import { useRuntimeConfig, useRoute, useRouter, ref } from '#imports';
 import { log } from '@utils/log';
 
-const props = defineProps<{ current?: string }>();
+defineProps<{ current?: string }>();
 
 const $config = useRuntimeConfig();
 const $route = useRoute();
