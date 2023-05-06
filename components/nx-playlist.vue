@@ -41,7 +41,7 @@ const $router = useRouter();
 const tab = ref(0);
 
 onMounted(() => {
-  tab.value = Number(props.src);
+  tab.value = Number(props.src ?? 0);
 });
 
 const toPlayer = (src: number, vol: number) => {
